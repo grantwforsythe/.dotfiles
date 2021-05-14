@@ -1,0 +1,11 @@
+{
+    "latex-workshop.view.pdf.viewer": "tab",
+    "python.pythonPath": "C:\\Users\\grant\\AppData\\Local\\Programs\\Python\\Python38-32\\python.exe",
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ],
+    "workbench.colorTheme": "One Dark Pro"
+}
