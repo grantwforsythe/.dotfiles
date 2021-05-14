@@ -7,7 +7,7 @@
             "filenamePattern": "*.ipynb"
         }
     ],
-    "workbench.colorTheme": "One Dark Pro"
+    "workbench.colorTheme": "One Dark Pro",
     "editor.fontSize": 15,
     "terminal.integrated.fontSize": 15,
     "editor.minimap.enabled": false,
