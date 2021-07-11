@@ -124,11 +124,16 @@ alias vis='vim "+set si"'
 
 # Change directory aliases
 alias home='cd ~'
+alias desktop='cd /mnt/c/Users/grant/Desktop'
 alias cd..='cd ..'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
+
+# python
+alias python='python3'
+alias pip='pip3'
 
 # cd into the old directory
 alias bd='cd "$OLDPWD"'
@@ -275,6 +280,13 @@ ftext ()
         # optional: -F treat search term as a literal, not a regular expression
         # optional: -l only print filenames and not the matching lines ex. grep -irl "$1" *
         grep -iIHrn --color=always "$1" . | less -r
+}
+
+# opens a file
+# source : https://bobaekang.com/blog/using-open-command-in-wsl/
+open ()
+{
+        Explorer.exe "$(wslpath -w $1)"
 }
 
 # Copy file with a progress bar
@@ -639,12 +651,12 @@ function __setprompt
                 fi
                 PS1+="\[${DARKGRAY}\])\[${NOCOLOR}\]\n"
         else
-                PS1=" "
+                PS1="" 
         fi
 
         # Date
-    # PS1+="\[${DARKGRAY}\](\[${CYAN}\]\$(date +%a) $(date +%b-'%-m')" # Date
-    # PS1+="${BLUE} $(date +'%-I':%M:%S%P)\[${DARKGRAY}\])-" # Time
+        # PS1+="\[${DARKGRAY}\](\[${CYAN}\]\$(date +%a) $(date +%b-'%-m')" # Date
+        # PS1+="${BLUE} $(date +'%-I':%M:%S%P)\[${DARKGRAY}\])-" # Time
 
         # CPU
         # PS1+="(\[${MAGENTA}\]CPU $(cpu)%"
@@ -663,11 +675,11 @@ function __setprompt
         if [ $SSH2_IP ] || [ $SSH_IP ] ; then
                 PS1+="\[${GREEN}\]\u@\h"
         else
-                PS1+="\[${RED}\]\u"
+                PS1+="\[${RED}\]\u@"
         fi
 
         # Current directory
-    # PS1+="\[${DARKGRAY}\]:\[${BROWN}\]\w\[${DARKGRAY}\] "
+        PS1+="\[${DARKGRAY}\]\h:\[${BROWN}\]\w\[${DARKGRAY}\]"
         # Total size of files in current directory
         # PS1+="(\[${GREEN}\]$(/bin/ls -lah | /bin/grep -m 1 total | /bin/sed 's/total //')\[${DARKGRAY}\]:"
 
