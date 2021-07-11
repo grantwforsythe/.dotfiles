@@ -111,6 +111,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -iv'
 alias mkdir='mkdir -p'
+alias grep='grep --color=auto'
 alias ps='ps auxf'
 alias ping='ping -c 10'
 alias less='less -R'
@@ -121,6 +122,14 @@ alias freshclam='sudo freshclam'
 alias vi='vim'
 alias svi='sudo vi'
 alias vis='vim "+set si"'
+
+# git aliases
+alias gco='git checkout'
+alias gbr='git branch'
+alias gnco ='git checkout -b'
+alias gs='git status'
+alias gc='git commit'
+alias gl='git log --pretty=oneline --abbrev-commit --graph'
 
 # Change directory aliases
 alias home='cd ~'
