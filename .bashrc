@@ -99,6 +99,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 # Edit this .bashrc file
 alias ebrc='edit ~/.bashrc'
+alias sedit='edit ~/.shh/config'
 
 # Show help for this .bashrc file
 alias hlp='less ~/.bashrc_help'
@@ -122,6 +123,14 @@ alias vi='vim'
 alias svi='sudo vi'
 alias vis='vim "+set si"'
 
+# git aliases
+alias gco='git checkout'
+alias gbr='git branch'
+alias gnco='git checkout -b'
+alias gs='git status'
+alias gc='git commit'
+alias gl='git log --pretty=oneline --abbrev-commit --graph'
+
 # Change directory aliases
 alias home='cd ~'
 alias desktop='cd /mnt/c/Users/grant/Desktop'
@@ -132,8 +141,17 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
 # python
-alias python='python3'
+alias python='python3' 
 alias pip='pip3'
+
+# sleep
+alias zzz='systemct1 suspend'
+
+# system health information
+alias info="uname -sr && uptime | sed 's/ //' && sensors|grep Pack && \
+            lscpu|grep 'CPU Mhz:' && acpi && \
+            echo -n 'Memory in use: ' && free -m|grep Mem|\
+            awk '{print \$3+\$5\" megs\"}'"
 
 # cd into the old directory
 alias bd='cd "$OLDPWD"'
@@ -155,7 +173,7 @@ alias lw='ls -xAh' # wide listing format
 alias ll='ls -Fls' # long listing format
 alias labc='ls -lap' #alphabetical sort
 alias lf="ls -l | egrep -v '^d'" # files only
-alias ldir="ls -l | egrep '^d'" # directories only
+alias lsd="ls -d */" # directories only
 
 # alias chmod commands
 alias mx='chmod a+x'
@@ -231,19 +249,19 @@ edit ()
                 vim "$@"
         fi
 }
-sedit ()
-{
-        if [ "$(type -t jpico)" = "file" ]; then
-                # Use JOE text editor http://joe-editor.sourceforge.net/
-                sudo jpico -nonotice -linums -nobackups "$@"
-        elif [ "$(type -t nano)" = "file" ]; then
-                sudo nano -c "$@"
-        elif [ "$(type -t pico)" = "file" ]; then
-                sudo pico "$@"
-        else
-                sudo vim "$@"
-        fi
-}
+# sedit ()
+# {
+#        if [ "$(type -t jpico)" = "file" ]; then
+#                # Use JOE text editor http://joe-editor.sourceforge.net/
+#                sudo jpico -nonotice -linums -nobackups "$@"
+#        elif [ "$(type -t nano)" = "file" ]; then
+#                sudo nano -c "$@"
+#        elif [ "$(type -t pico)" = "file" ]; then
+#                sudo pico "$@"
+#        else
+#                sudo vim "$@"
+#        fi
+# }
 
 # Extracts any archive(s) (if unp isn't installed)
 extract () {
