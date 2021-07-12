@@ -147,7 +147,7 @@ alias python='python3'
 alias pip='pip3'
 
 # sleep
-alias zzz='systemct1 suspend'
+alias zzz='systemctl suspend'
 
 # system health information
 alias inf="uname -sr && uptime | sed 's/ //' && sensors|grep Pack && \
