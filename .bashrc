@@ -150,7 +150,7 @@ alias pip='pip3'
 alias zzz='systemct1 suspend'
 
 # system health information
-alias info="uname -sr && uptime | sed 's/ //' && sensors|grep Pack && \
+alias inf="uname -sr && uptime | sed 's/ //' && sensors|grep Pack && \
             lscpu|grep 'CPU Mhz:' && acpi && \
             echo -n 'Memory in use: ' && free -m|grep Mem|\
             awk '{print \$3+\$5\" megs\"}'"
