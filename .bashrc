@@ -147,7 +147,7 @@ alias python='python3'
 alias pip='pip3'
 
 # sleep
-alias zzz='systemctl suspend'
+# alias zzz='systemctl suspend'
 
 # system health information
 alias inf="uname -sr && uptime | sed 's/ //' && sensors|grep Pack && \
@@ -690,12 +690,13 @@ function __setprompt
         # PS1+="\[${DARKGRAY}\])-"
 
         # User and server
-        local SSH_IP=`echo $SSH_CLIENT | awk '{ print $1 }'`
-        local SSH2_IP=`echo $SSH2_CLIENT | awk '{ print $1 }'`
-        if [ $SSH2_IP ] || [ $SSH_IP ] ; then
-                PS1+="\[${GREEN}\]\u@"
+        # local SSH_IP=`echo $SSH_CLIENT | awk '{ print $1 }'`
+        # local SSH2_IP=`echo $SSH2_CLIENT | awk '{ print $1 }'`
+        # if [ $SSH2_IP ] || [ $SSH_IP ] ; then
+        if [[ $EUID -ne 0 ]]; then
+                PS1+="\[${GREEN}\]\u@" # Normal user
         else
-                PS1+="\[${RED}\]\u@"
+                PS1+="\[${RED}\]\u@" # Root user
         fi
 
         # Current directory
@@ -712,7 +713,7 @@ function __setprompt
         if [[ $EUID -ne 0 ]]; then
                 PS1+="\n\[${GREEN}\]$\[${NOCOLOR}\] " # Normal user
         else
-                PS1+="\n\[${RED}\]>\[${NOCOLOR}\] " # Root user
+                PS1+="\n\[${GREEN}\]>\[${NOCOLOR}\] " # Root user
         fi
 
         # PS2 is used to continue a command using the \ character
