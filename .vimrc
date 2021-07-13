@@ -2,6 +2,9 @@
 " Basic editing config
 "---------------------
 syntax on
+
+set nocompatible " vim is not using vi
+filetype off " change the way vim caches filetype rules at runtime
  
 set noerrorbells
 set guicursor= " set the type of cursor
@@ -19,12 +22,10 @@ set nobackup
 set undodir=~/.vim/undodir
 set undofile
 set incsearch " while you are typing, you will get results
+set mouse=a " mouse
 
 set clipboard=unnamed " allows to paste from outside sources
 
-" set colorcolumn=gruvbox " sets the them
-"high ColorColumn ctermbg=0 guibg=lightgrey 
-" use 4 spaces instead of tabs during formatting
 set expandtab
 set tabstop=4
 set shiftwidth=4
@@ -33,20 +34,23 @@ set softtabstop=4
 set ignorecase
 set smartcase
 
-" execute pathogen#infect()
+" use tab to indent
+nmap <tab> v>
+nmap <s-tab> v<
+vmap <tab> >gv
+vmap <s-tab> <gv
 
-" colorscheme gruvbox
-" set background=dark
+" =================================================
 
-" "if executable('rg')
-" "    let g:rp_derive_root='true'
-" "endif
+set rtp+=~/.vim/bundle/vundle/ " set the runtime path to include Vundle and initialize
+call vundle#rc() " specify a directory for plugins
 
-" let g:ctrlp_user_command = ['.git/']
-" let mapleader= " "
-" let g:netrw_browse_split=2
-" let g:netrw_banner=0
-" let g:netrw_winsize=25
+Plugin 'VundleVim/Vundle.vim'   " let Vundle mange Vundle, required
+Plugin 'morhetz/gruvbox'        " colorscheme
 
-" let g:ctrlp_use_caching=0
+filetype plugin indent on " re-establish the 'filetype' functionality
 
+" =================================================
+" Configuartion: gruvbox
+colorscheme gruvbox
+set background=dark

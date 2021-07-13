@@ -26,9 +26,10 @@ homedir=$1
 
 # dotfiles directory
 dotfiledir=${homedir}/dotfiles
+bundle=${homedir}/.vim/bundle
 
 # list of files/folders to symlink in ${homedir}
-files="bash_profile bashrc vimrc tmux.config"
+files="bash_profile bashrc vimrc tmux.config vim"
 
 # change to the dotfiles directory
 echo "Changing to the ${dotfiledir} directory"
@@ -41,9 +42,3 @@ for file in ${files}; do
     echo "Creating symlink to $file in home directory."
     ln -sf ${dotfiledir}/.${file} ${homedir}/.${file}
 done
-
-# Download Git Auto-Completion
-# curl "https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash" 
-
-# Run the vscode script
-# ./vscode.sh
