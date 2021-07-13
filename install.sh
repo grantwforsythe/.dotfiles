@@ -29,7 +29,7 @@ dotfiledir=${homedir}/dotfiles
 bundle=${homedir}/.vim/bundle
 
 # list of files/folders to symlink in ${homedir}
-files="bash_profile bashrc vimrc tmux.config vim"
+files="bash_profile bashrc vimrc tmux.config"
 
 # change to the dotfiles directory
 echo "Changing to the ${dotfiledir} directory"
