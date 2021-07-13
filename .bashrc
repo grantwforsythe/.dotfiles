@@ -693,7 +693,7 @@ function __setprompt
         local SSH_IP=`echo $SSH_CLIENT | awk '{ print $1 }'`
         local SSH2_IP=`echo $SSH2_CLIENT | awk '{ print $1 }'`
         if [ $SSH2_IP ] || [ $SSH_IP ] ; then
-                PS1+="\[${GREEN}\]\u@\h"
+                PS1+="\[${GREEN}\]\u@"
         else
                 PS1+="\[${RED}\]\u@"
         fi
@@ -710,9 +710,9 @@ function __setprompt
         # PS1+="\n"
 
         if [[ $EUID -ne 0 ]]; then
-                PS1+="\[${GREEN}\]>\[${NOCOLOR}\] " # Normal user
+                PS1+="\n\[${GREEN}\]$\[${NOCOLOR}\] " # Normal user
         else
-                PS1+="\[${RED}\]>\[${NOCOLOR}\] " # Root user
+                PS1+="\n\[${RED}\]>\[${NOCOLOR}\] " # Root user
         fi
 
         # PS2 is used to continue a command using the \ character
