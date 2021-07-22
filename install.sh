@@ -44,4 +44,13 @@ for file in ${files}; do
 done
 
 # source tmux config
+echo "Sourcing tmux config..."
 tmux source-file ${homedir}/.tmux.conf
+echo "...finished sourcing"
+
+# installing vim plugins
+echo "Installing Vundle"
+git clone git clone https://github.com/VundleVim/Vundle.vim.git ${homedir}/.vim/bundle/Vundle.vim
+
+echo "Installing Vim Plugins via Vundle"
+vim +PluginInstall +qall
