@@ -42,3 +42,6 @@ for file in ${files}; do
     echo "Creating symlink to $file in home directory."
     ln -sf ${dotfiledir}/.${file} ${homedir}/.${file}
 done
+
+# source tmux config
+tmux source-file ${homedir}/.tmux.conf
