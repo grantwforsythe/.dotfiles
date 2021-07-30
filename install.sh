@@ -45,7 +45,7 @@ done
 
 # source tmux config
 echo "Sourcing tmux config..."
-tmux source-file ${homedir}/.tmux.conf
+tmux source-file ${homedir}/.tmux.config
 echo "...finished sourcing"
 
 # installing vim plugins
