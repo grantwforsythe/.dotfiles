@@ -42,12 +42,13 @@ vmap <s-tab> <gv
 
 " =================================================
 
-set rtp+=~/.vim/bundle/vundle/ " set the runtime path to include Vundle and initialize
-call vundle#rc() " specify a directory for plugins
+set rtp+=~/.vim/bundle/Vundle.vim " set the runtime path to include Vundle and initialize
+call vundle#begin() " specify a directory for plugins
 
 Plugin 'VundleVim/Vundle.vim'   " let Vundle mange Vundle, required
 Plugin 'morhetz/gruvbox'        " colorscheme
 
+call vundle#end() 
 filetype plugin indent on " re-establish the 'filetype' functionality
 
 " =================================================
