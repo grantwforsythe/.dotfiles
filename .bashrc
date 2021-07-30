@@ -1,6 +1,10 @@
 #!/bin/bash
 iatest=$(expr index "$-" i)
 
+# start in tmux automatically
+# source : https://unix.stackexchange.com/questions/43601/how-can-i-set-my-default-shell-to-start-up-tmux
+[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
+
 #######################################################
 # SOURCED ALIAS'S AND SCRIPTS BY zachbrowne.me
 #######################################################
