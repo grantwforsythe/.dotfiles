@@ -1,0 +1,9 @@
+[user]
+    user = grantwforsythe@gmail.com
+    name = Grant Forsythe
+[github]
+    user = grantwforsythe
+[core]
+    editor = vim
+[init]
+    defaultBranch = main
