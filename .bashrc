@@ -129,6 +129,8 @@ alias svi='sudo vi'
 alias vis='vim "+set si"'
 
 # git aliases
+alias g='git'
+alias gc='git clone'
 alias gco='git checkout'
 alias gbr='git branch'
 alias gnco='git checkout -b'
