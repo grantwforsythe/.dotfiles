@@ -40,6 +40,12 @@ nmap <s-tab> v<
 vmap <tab> >gv
 vmap <s-tab> <gv
 
+" turn off highlighting
+:map <F4> :nohl<CR>
+
+set colorcolumn=100
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+
 " =================================================
 
 set rtp+=~/.vim/bundle/Vundle.vim " set the runtime path to include Vundle and initialize
@@ -47,11 +53,31 @@ call vundle#begin() " specify a directory for plugins
 
 Plugin 'VundleVim/Vundle.vim'   " let Vundle mange Vundle, required
 Plugin 'morhetz/gruvbox'        " colorscheme
+" Plugin 'ycm-core/YouCompleteMe' " text completion
+Plugin 'jremmen/vim-ripgrep'    " faster grep
+Plugin 'kien/ctrlp.vim'         " file finding
+Plugin 'mbbill/undotree'        " undo tree
 
-call vundle#end() 
+call vundle#end() " specify a directory for plugins
 filetype plugin indent on " re-establish the 'filetype' functionality
 
 " =================================================
 " Configuartion: gruvbox
 colorscheme gruvbox
 set background=dark
+
+" =================================================
+" Configuartion: vim-ripgrep 
+if executable('rg')
+    let g:rg_derive_root='true'
+endif
+
+" =================================================
+" Configuartion: vim-ripgrep 
+let g:ctrlp_user_command = ['.git/']
+let mapleader = " "
+let g:netrw_browse_split = 2
+let g:netrw_banner = 0
+let g:netrw_winsize = 25
+
+let g:ctrlp_use_caching = 0
