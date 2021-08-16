@@ -3,7 +3,7 @@ iatest=$(expr index "$-" i)
 
 # start in tmux automatically
 # source : https://unix.stackexchange.com/questions/43601/how-can-i-set-my-default-shell-to-start-up-tmux
-[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
+# [ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
 
 #######################################################
 # SOURCED ALIAS'S AND SCRIPTS BY zachbrowne.me
@@ -11,14 +11,14 @@ iatest=$(expr index "$-" i)
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-         . /etc/bashrc
+    . /etc/bashrc
 fi
 
 # Enable bash programmable completion features in interactive shells
 if [ -f /usr/share/bash-completion/bash_completion ]; then
-        . /usr/share/bash-completion/bash_completion
+    . /usr/share/bash-completion/bash_completion
 elif [ -f /etc/bash_completion ]; then
-        . /etc/bash_completion
+    . /etc/bash_completion
 fi
 
 #######################################################
@@ -55,10 +55,6 @@ if [[ $iatest > 0 ]]; then bind "set show-all-if-ambiguous On"; fi
 # Set the default editor
 export EDITOR=vim
 export VISUAL=vim
-alias pico='edit'
-alias spico='sedit'
-alias nano='edit'
-alias snano='sedit'
 
 # To have colors for ls and all grep commands such as grep, egrep and zgrep
 export CLICOLOR=1
@@ -105,12 +101,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias ebrc='edit ~/.bashrc'
 alias sedit='edit ~/.shh/config'
 
-# Show help for this .bashrc file
-alias hlp='less ~/.bashrc_help'
-
-# alias to show the date
-alias da='date "+%Y-%m-%d %A %T %Z"'
-
 # Alias's to modified commands
 alias cp='cp -i'
 alias mv='mv -i'
@@ -151,9 +141,6 @@ alias .....='cd ../../../..'
 # python
 alias python='python3' 
 alias pip='pip3'
-
-# sleep
-# alias zzz='systemctl suspend'
 
 # system health information
 alias inf="uname -sr && uptime | sed 's/ //' && sensors|grep Pack && \
@@ -706,7 +693,7 @@ function __setprompt
         fi
 
         # Current directory
-        PS1+="\[${DARKGRAY}\]\h:\[${BROWN}\]\w\[${DARKGRAY}\]"
+        PS1+="\[${DARKGRAY}\]\h\[${BROWN}\]"
         # Total size of files in current directory
         # PS1+="(\[${GREEN}\]$(/bin/ls -lah | /bin/grep -m 1 total | /bin/sed 's/total //')\[${DARKGRAY}\]:"
 
@@ -717,9 +704,9 @@ function __setprompt
         # PS1+="\n"
 
         if [[ $EUID -ne 0 ]]; then
-                PS1+="\n\[${GREEN}\]$\[${NOCOLOR}\] " # Normal user
+                PS1+=" \[${YELLOW}\]$\[${NOCOLOR}\] " # Normal user
         else
-                PS1+="\n\[${GREEN}\]>\[${NOCOLOR}\] " # Root user
+                PS1+=" \[${RED}\]>\[${NOCOLOR}\] " # Root user
         fi
 
         # PS2 is used to continue a command using the \ character
