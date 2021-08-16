@@ -34,6 +34,10 @@ set softtabstop=4
 set ignorecase
 set smartcase
 
+" display cwd
+" source: https://stackoverflow.com/questions/33033646/how-to-show-constantly-current-working-directory-in-vim
+set laststatus=2
+set statusline=%!getcwd()
 " use tab to indent
 nmap <tab> v>
 nmap <s-tab> v<
@@ -41,7 +45,7 @@ vmap <tab> >gv
 vmap <s-tab> <gv
 
 " turn off highlighting
-:map <F4> :nohl<CR>
+nnoremap <F4> :nohl<CR>
 
 set colorcolumn=100
 highlight ColorColumn ctermbg=0 guibg=lightgrey
