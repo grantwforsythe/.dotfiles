@@ -1,14 +1,6 @@
 #!/bin/bash
 iatest=$(expr index "$-" i)
 
-# start in tmux automatically
-# source : https://unix.stackexchange.com/questions/43601/how-can-i-set-my-default-shell-to-start-up-tmux
-# [ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
-
-#######################################################
-# SOURCED ALIAS'S AND SCRIPTS BY zachbrowne.me
-#######################################################
-
 # Source global definitions
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
@@ -22,7 +14,7 @@ elif [ -f /etc/bash_completion ]; then
 fi
 
 #######################################################
-# EXPORTS
+# Exports
 #######################################################
 
 # Disable the bell
@@ -73,29 +65,8 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 #######################################################
-# MACHINE SPECIFIC ALIAS'S
+# Alias's
 #######################################################
-
-# Alias's for SSH
-# alias SERVERNAME='ssh YOURWEBSITE.com -l USERNAME -p PORTNUMBERHERE'
-
-# Alias's to change the directory
-alias web='cd /var/www/html'
-
-# Alias's to mount ISO files
-# mount -o loop /home/NAMEOFISO.iso /home/ISOMOUNTDIR/
-# umount /home/NAMEOFISO.iso
-# (Both commands done as root only.)
-
-#######################################################
-# GENERAL ALIAS'S
-#######################################################
-# To temporarily bypass an alias, we preceed the command with a \
-# EG: the ls command is aliased, but to use the normal ls command you would type \ls
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Edit this .bashrc file
 alias ebrc='edit ~/.bashrc'
@@ -125,7 +96,6 @@ alias gc='git clone'
 alias gco='git checkout'
 alias gbr='git branch'
 alias gnco='git checkout -b'
-alias gnco='git checkout -b'
 alias gs='git status'
 alias gc='git commit'
 alias gl='git log --pretty=oneline --abbrev-commit --graph'
@@ -142,14 +112,8 @@ alias .....='cd ../../../..'
 # python
 alias python='python3' 
 alias pip='pip3'
-alias venv='virtualenv --python python3.6 venv && source venv/bin/activate'
+alias venv='python -m venv venv && source venv/bin/activate'
 alias deact='deactivate'
-
-# system health information
-alias inf="uname -sr && uptime | sed 's/ //' && sensors|grep Pack && \
-            lscpu|grep 'CPU Mhz:' && acpi && \
-            echo -n 'Memory in use: ' && free -m|grep Mem|\
-            awk '{print \$3+\$5\" megs\"}'"
 
 # cd into the old directory
 alias bd='cd "$OLDPWD"'
@@ -185,7 +149,6 @@ alias 777='chmod -R 777'
 alias h="history | grep "
 
 # Search running processes
-alias p="ps aux | grep "
 alias topcpu="/bin/ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10"
 
 # Search files in the current folder
@@ -194,12 +157,6 @@ alias f="find . | grep "
 # Count all files (recursively) in the current folder
 alias countfiles="for t in files links directories; do echo \`find . -type \${t:0:1} | wc -l\` \$t; done 2> /dev/null"
 
-# To see if a command is aliased, a file, or a built-in command
-alias checkcommand="type -t"
-
-# Show current network connections to the server
-alias ipview="netstat -anpl | grep :80 | awk {'print \$5'} | cut -d\":\" -f1 | sort | uniq -c | sort -n | sed -e 's/^ *//' -e 's/ *\$//'"
-
 # Show open ports
 alias openports='netstat -nape --inet'
 
@@ -207,13 +164,9 @@ alias openports='netstat -nape --inet'
 alias rebootsafe='sudo shutdown -r now'
 alias rebootforce='sudo shutdown -r -n now'
 
-# Alias's to show disk space and space used in a folder
-alias diskspace="du -S | sort -n -r |more"
-alias folders='du -h --max-depth=1'
-alias folderssort='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
+# Alias's to view the structure of a directory 
 alias tree='tree -CAhF --dirsfirst'
 alias treed='tree -CAFd'
-alias mountedinfo='df -hT'
 
 # Alias's for archives
 alias mktar='tar -cvf'
@@ -226,40 +179,9 @@ alias ungz='tar -xvzf'
 # Show all logs in /var/log
 alias logs="sudo find /var/log -type f -exec file {} \; | grep 'text' | cut -d' ' -f1 | sed -e's/:$//g' | grep -v '[0-9]$' | xargs tail -f"
 
-# SHA1
-alias sha1='openssl sha1'
-
 #######################################################
-# SPECIAL FUNCTIONS
+# Functions
 #######################################################
-
-# Use the best version of pico installed
-edit ()
-{
-        if [ "$(type -t jpico)" = "file" ]; then
-                # Use JOE text editor http://joe-editor.sourceforge.net/
-                jpico -nonotice -linums -nobackups "$@"
-        elif [ "$(type -t nano)" = "file" ]; then
-                nano -c "$@"
-        elif [ "$(type -t pico)" = "file" ]; then
-                pico "$@"
-        else
-                vim "$@"
-        fi
-}
-# sedit ()
-# {
-#        if [ "$(type -t jpico)" = "file" ]; then
-#                # Use JOE text editor http://joe-editor.sourceforge.net/
-#                sudo jpico -nonotice -linums -nobackups "$@"
-#        elif [ "$(type -t nano)" = "file" ]; then
-#                sudo nano -c "$@"
-#        elif [ "$(type -t pico)" = "file" ]; then
-#                sudo pico "$@"
-#        else
-#                sudo vim "$@"
-#        fi
-# }
 
 # Extracts any archive(s) (if unp isn't installed)
 extract () {
@@ -300,10 +222,10 @@ ftext ()
 
 # opens a file
 # source : https://bobaekang.com/blog/using-open-command-in-wsl/
-open ()
-{
-        Explorer.exe "$(wslpath -w $1)"
-}
+# open ()
+# {
+#        Explorer.exe "$(wslpath -w $1)"
+#}
 
 # Copy file with a progress bar
 cpp()
@@ -367,22 +289,6 @@ up ()
                 d=..
         fi
         cd $d
-}
-
-#Automatically do an ls after each cd
-# cd ()
-# {
-#       if [ -n "$1" ]; then
-#               builtin cd "$@" && ls
-#       else
-#               builtin cd ~ && ls
-#       fi
-# }
-
-# Returns the last 2 fields of the working directory
-pwdtail ()
-{
-        pwd|awk -F/ '{nlast = NF -1;print $nlast"/"$NF}'
 }
 
 # Show the current distribution
@@ -459,152 +365,10 @@ ver ()
         fi
 }
 
-# Automatically install the needed support files for this .bashrc file
-install_bashrc_support ()
-{
-        local dtype
-        dtype=$(distribution)
-
-        if [ $dtype == "redhat" ]; then
-                sudo yum install multitail tree joe
-        elif [ $dtype == "suse" ]; then
-                sudo zypper install multitail
-                sudo zypper install tree
-                sudo zypper install joe
-        elif [ $dtype == "debian" ]; then
-                sudo apt-get install multitail tree joe
-        elif [ $dtype == "gentoo" ]; then
-                sudo emerge multitail
-                sudo emerge tree
-                sudo emerge joe
-        elif [ $dtype == "mandriva" ]; then
-                sudo urpmi multitail
-                sudo urpmi tree
-                sudo urpmi joe
-        elif [ $dtype == "slackware" ]; then
-                echo "No install support for Slackware"
-        else
-                echo "Unknown distribution"
-        fi
-}
-
-# Show current network information
-netinfo ()
-{
-        echo "--------------- Network Information ---------------"
-        /sbin/ifconfig | awk /'inet addr/ {print $2}'
-        echo ""
-        /sbin/ifconfig | awk /'Bcast/ {print $3}'
-        echo ""
-        /sbin/ifconfig | awk /'inet addr/ {print $4}'
-
-        /sbin/ifconfig | awk /'HWaddr/ {print $4,$5}'
-        echo "---------------------------------------------------"
-}
-
-# IP address lookup
-alias whatismyip="whatsmyip"
-function whatsmyip ()
-{
-        # Dumps a list of all IP addresses for every device
-        # /sbin/ifconfig |grep -B1 "inet addr" |awk '{ if ( $1 == "inet" ) { print $2 } else if ( $2 == "Link" ) { printf "%s:" ,$1 } }' |awk -F: '{ print $1 ": " $3 }';
-
-        # Internal IP Lookup
-        echo -n "Internal IP: " ; /sbin/ifconfig eth0 | grep "inet addr" | awk -F: '{print $2}' | awk '{print $1}'
-
-        # External IP Lookup
-        echo -n "External IP: " ; wget http://smart-ip.net/myip -O - -q
-}
-
-# View Apache logs
-apachelog ()
-{
-        if [ -f /etc/httpd/conf/httpd.conf ]; then
-                cd /var/log/httpd && ls -xAh && multitail --no-repeat -c -s 2 /var/log/httpd/*_log
-        else
-                cd /var/log/apache2 && ls -xAh && multitail --no-repeat -c -s 2 /var/log/apache2/*.log
-        fi
-}
-
-# Edit the Apache configuration
-apacheconfig ()
-{
-        if [ -f /etc/httpd/conf/httpd.conf ]; then
-                sedit /etc/httpd/conf/httpd.conf
-        elif [ -f /etc/apache2/apache2.conf ]; then
-                sedit /etc/apache2/apache2.conf
-        else
-                echo "Error: Apache config file could not be found."
-                echo "Searching for possible locations:"
-                sudo updatedb && locate httpd.conf && locate apache2.conf
-        fi
-}
-
-# Edit the PHP configuration file
-phpconfig ()
-{
-        if [ -f /etc/php.ini ]; then
-                sedit /etc/php.ini
-        elif [ -f /etc/php/php.ini ]; then
-                sedit /etc/php/php.ini
-        elif [ -f /etc/php5/php.ini ]; then
-                sedit /etc/php5/php.ini
-        elif [ -f /usr/bin/php5/bin/php.ini ]; then
-                sedit /usr/bin/php5/bin/php.ini
-        elif [ -f /etc/php5/apache2/php.ini ]; then
-                sedit /etc/php5/apache2/php.ini
-        else
-                echo "Error: php.ini file could not be found."
-                echo "Searching for possible locations:"
-                sudo updatedb && locate php.ini
-        fi
-}
-
-# Edit the MySQL configuration file
-mysqlconfig ()
-{
-        if [ -f /etc/my.cnf ]; then
-                sedit /etc/my.cnf
-        elif [ -f /etc/mysql/my.cnf ]; then
-                sedit /etc/mysql/my.cnf
-        elif [ -f /usr/local/etc/my.cnf ]; then
-                sedit /usr/local/etc/my.cnf
-        elif [ -f /usr/bin/mysql/my.cnf ]; then
-                sedit /usr/bin/mysql/my.cnf
-        elif [ -f ~/my.cnf ]; then
-                sedit ~/my.cnf
-        elif [ -f ~/.my.cnf ]; then
-                sedit ~/.my.cnf
-        else
-                echo "Error: my.cnf file could not be found."
-                echo "Searching for possible locations:"
-                sudo updatedb && locate my.cnf
-        fi
-}
-
-# For some reason, rot13 pops up everywhere
-rot13 () {
-        if [ $# -eq 0 ]; then
-                tr '[a-m][n-z][A-M][N-Z]' '[n-z][a-m][N-Z][A-M]'
-        else
-                echo $* | tr '[a-m][n-z][A-M][N-Z]' '[n-z][a-m][N-Z][A-M]'
-        fi
-}
-
-# Trim leading and trailing spaces (for scripts)
-trim()
-{
-        local var=$@
-        var="${var#"${var%%[![:space:]]*}"}"  # remove leading whitespace characters
-        var="${var%"${var##*[![:space:]]}"}"  # remove trailing whitespace characters
-        echo -n "$var"
-}
-
 #######################################################
-# Set the ultimate amazing command prompt
+# Command Prompt
 #######################################################
 
-alias cpu="grep 'cpu ' /proc/stat | awk '{usage=(\$2+\$4)*100/(\$2+\$4+\$5)} END {print usage}' | awk '{printf(\"%.1f\n\", \$1)}'"
 function __setprompt
 {
         local LAST_COMMAND=$? # Must come first!
@@ -669,26 +433,8 @@ function __setprompt
         else
                 PS1="" 
         fi
-
-        # Date
-        # PS1+="\[${DARKGRAY}\](\[${CYAN}\]\$(date +%a) $(date +%b-'%-m')" # Date
-        # PS1+="${BLUE} $(date +'%-I':%M:%S%P)\[${DARKGRAY}\])-" # Time
-
-        # CPU
-        # PS1+="(\[${MAGENTA}\]CPU $(cpu)%"
-
-        # Jobs
-        # PS1+="\[${DARKGRAY}\]:\[${MAGENTA}\]\j"
-
-        # Network Connections (for a server - comment out for non-server)
-        # PS1+="\[${DARKGRAY}\]:\[${MAGENTA}\]Net $(awk 'END {print NR}' /proc/net/tcp)"
-
-        # PS1+="\[${DARKGRAY}\])-"
-
-        # User and server
-        # local SSH_IP=`echo $SSH_CLIENT | awk '{ print $1 }'`
-        # local SSH2_IP=`echo $SSH2_CLIENT | awk '{ print $1 }'`
-        # if [ $SSH2_IP ] || [ $SSH_IP ] ; then
+        
+        # color of the user
         if [[ $EUID -ne 0 ]]; then
                 PS1+="\[${GREEN}\]\u@" # Normal user
         else
@@ -697,14 +443,6 @@ function __setprompt
 
         # Current directory
         PS1+="\[${DARKGRAY}\]\h\[${BROWN}\]"
-        # Total size of files in current directory
-        # PS1+="(\[${GREEN}\]$(/bin/ls -lah | /bin/grep -m 1 total | /bin/sed 's/total //')\[${DARKGRAY}\]:"
-
-        # Number of files
-        # PS1+="\[${GREEN}\]\$(/bin/ls -A -1 | /usr/bin/wc -l)\[${DARKGRAY}\])"
-
-        # Skip to the next line
-        # PS1+="\n"
 
         if [[ $EUID -ne 0 ]]; then
                 PS1+=" \[${YELLOW}\]$\[${NOCOLOR}\] " # Normal user
@@ -712,13 +450,5 @@ function __setprompt
                 PS1+=" \[${RED}\]>\[${NOCOLOR}\] " # Root user
         fi
 
-        # PS2 is used to continue a command using the \ character
-        PS2="\[${DARKGRAY}\]>\[${NOCOLOR}\] "
-
-        # PS3 is used to enter a number choice in a script
-        PS3='Please enter a number from above list: '
-
-        # PS4 is used for tracing a script in debug mode
-        PS4='\[${DARKGRAY}\]+\[${NOCOLOR}\] '
 }
 PROMPT_COMMAND='__setprompt'
