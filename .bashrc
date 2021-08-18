@@ -220,13 +220,6 @@ ftext ()
         grep -iIHrn --color=always "$1" . | less -r
 }
 
-# opens a file
-# source : https://bobaekang.com/blog/using-open-command-in-wsl/
-# open ()
-# {
-#        Explorer.exe "$(wslpath -w $1)"
-#}
-
 # Copy file with a progress bar
 cpp()
 {
