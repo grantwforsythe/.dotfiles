@@ -99,6 +99,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 # Edit this .bashrc file
 alias ebrc='edit ~/.bashrc'
+alias evrc='edit ~/.vimrc'
 alias sedit='edit ~/.shh/config'
 
 # Alias's to modified commands
@@ -141,6 +142,8 @@ alias .....='cd ../../../..'
 # python
 alias python='python3' 
 alias pip='pip3'
+alias venv='virtualenv --python python3.6 venv && source venv/bin/activate'
+alias deact='deactivate'
 
 # system health information
 alias inf="uname -sr && uptime | sed 's/ //' && sensors|grep Pack && \
