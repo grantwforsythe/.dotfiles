@@ -112,7 +112,8 @@ alias .....='cd ../../../..'
 # python
 alias python='python3' 
 alias pip='pip3'
-alias venv='python -m venv venv && source venv/bin/activate'
+alias mkvenv='python -m venv venv'
+alias venv='source venv/bin/activate'
 alias deact='deactivate'
 
 # cd into the old directory
@@ -443,7 +444,7 @@ function __setprompt
         fi
 
         # Current directory
-        PS1+="\[${DARKGRAY}\]\h\[${BROWN}\]\$(gitrepo)"
+        PS1+="\[${DARKGRAY}\]\h\[${BROWN}\]\[${LIGHTRED}\]\$(gitrepo)" 
 
         if [[ $EUID -ne 0 ]]; then
                 PS1+=" \[${YELLOW}\]$\[${NOCOLOR}\] " # Normal user
