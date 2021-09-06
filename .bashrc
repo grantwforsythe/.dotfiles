@@ -443,7 +443,7 @@ function __setprompt
         fi
 
         # Current directory
-        PS1+="\[${DARKGRAY}\]\h\[${BROWN}\]\[${LIGHTRED}\]\$(gitrepo)" 
+        PS1+="\[${DARKGRAY}\]\h\[${YELLOW}\] in \[${BROWN}\]\W\[${LIGHTRED}\]\$(gitrepo)" 
 
         if [[ $EUID -ne 0 ]]; then
                 PS1+=" \[${YELLOW}\]$\[${NOCOLOR}\] " # Normal user
