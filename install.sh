@@ -42,7 +42,6 @@ if ! is_app_installed vim ; then
     exit 2
 fi
 
-
 # change to the dotfiles directory
 echo "Changing to the ${DOTFILEDIR} directory..."
 cd ${DOTFILEDIR}
