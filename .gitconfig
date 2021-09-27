@@ -24,3 +24,5 @@
     user = grantwforsythe
 [init]
     defaultBranch = main
+[submodule]
+	recurse = true
