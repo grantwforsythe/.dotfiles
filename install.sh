@@ -20,7 +20,7 @@ DOTFILEDIR=${HOMEDIR}/dotfiles
 BUNDLE=${HOMEDIR}/.vim/bundle/
 
 # list of FILES/folders to symlink in ${HOMEDIR}
-FILES="bash_profile bashrc vimrc tmux.conf gitconfig"
+FILES="bash_profile bashrc zshrc p10k.zsh vimrc tmux.conf gitconfig"
 
 # how to use this script
 if [ "$#" -ne 1 ]; then
@@ -41,6 +41,11 @@ if ! is_app_installed vim ; then
             Install it first.\n"
     exit 2
 fi
+
+# check if zsh is installed
+if ! is_app_installed zsh ; then
+    printf "Warning: \"zsh\" is not found.\
+            Install it first.\n"
 
 # change to the dotfiles directory
 echo "Changing to the ${DOTFILEDIR} directory..."
@@ -69,3 +74,7 @@ fi
 
 echo "Installing Vim Plugins via Vundle"
 vim +PluginInstall +qall
+
+# install ohmyzsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
