@@ -53,12 +53,14 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 set rtp+=~/.vim/bundle/Vundle.vim " set the runtime path to include Vundle and initialize
 call vundle#begin() " specify a directory for plugins
 
-Plugin 'VundleVim/Vundle.vim'   " let Vundle mange Vundle, required
-Plugin 'morhetz/gruvbox'        " colorscheme
-Plugin 'jremmen/vim-ripgrep'    " faster grep
-Plugin 'kien/ctrlp.vim'         " file finding
-Plugin 'Syntastic'              " syntax highlighting
-Plugin 'scrooloose/nerdtree'    " file system explorer
+Plugin 'VundleVim/Vundle.vim'       " let Vundle mange Vundle, required
+Plugin 'morhetz/gruvbox'            " colorscheme
+Plugin 'jremmen/vim-ripgrep'        " faster grep
+Plugin 'kien/ctrlp.vim'             " file finding
+Plugin 'Syntastic'                  " syntax highlighting
+Plugin 'scrooloose/nerdtree'        " file system explorer
+Plugin 'easymotion/vim-easymotion'  " magic motions
+Plugin 'mileszs/ack.vim'            " code search
 
 call vundle#end() " specify a directory for plugins
 filetype plugin indent on " re-establish the 'filetype' functionality

@@ -1,0 +1,79 @@
+# Shortcuts
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -iv'
+alias mkdir='mkdir -p'
+alias grep='grep --color=auto'
+alias ps='ps auxf'                                      # view jobs
+alias ping='ping -c 10'
+alias less='less -R'
+alias cls='clear'
+alias bd='cd "$OLDPWD"'
+alias rmd='/bin/rm  --recursive --force --verbose '
+alias h="history | grep "
+alias f="find . | grep "
+alias countfiles="for t in files links directories; do echo \`find . -type \${t:0:1} | wc -l\` \$t; done 2> /dev/null"
+alias rebootsafe='sudo shutdown -r now'
+alias rebootforce='sudo shutdown -r -n now'
+alias tree='tree -CAhF --dirsfirst'
+alias treed='tree -CAFd'
+
+# Listing files
+alias la='ls -Alh'                      # show hidden files
+alias ls='ls -aFh --color=always'       # add colors and file type extensions
+alias lx='ls -lXBh'                     # sort by extension
+alias lk='ls -lSrh'                     # sort by size
+alias lc='ls -lcrh'                     # sort by change time
+alias lu='ls -lurh'                     # sort by access time
+alias lr='ls -lRh'                      # recursive ls
+alias lt='ls -ltrh'                     # sort by date
+alias labc='ls -lap'                    # alphabetical sort
+alias lf="ls -l | egrep -v '^d'"        # files only
+alias lsd="ls -d */"                    # directories only
+
+# Editing and vim aliases
+alias ebrc='edit ~/.bashrc'
+alias ezsh='edit ~/.zshrc'
+alias evrc='edit ~/.vimrc'
+alias sedit='edit ~/.shh/config'
+alias vi='vim'
+
+# Git aliases
+alias g='git'
+alias gc='git clone'
+alias gco='git checkout'
+alias gbr='git branch'
+alias gnco='git checkout -b'
+alias gs='git status'
+alias gc='git commit'
+alias gl='git log --pretty=oneline --abbrev-commit --graph'
+
+# Easy navigation: ~, .., ..., ....
+Alias ~='cd ~'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
+# Python aliases
+alias python='python3' 
+alias pip='pip3'
+alias mkvenv='python -m venv venv'
+alias venv='source venv/bin/activate'
+alias deact='deactivate'
+
+# Chmod aliases
+alias mx='chmod a+x'                    # give User, Group, and Others execute permission on a file
+alias 000='chmod -R 000'                # remove all permissions recursively in a directory
+alias 644='chmod -R 644'                # give read and write permissions to the User and everyone else just has read permissions
+alias 666='chmod -R 666'                # give read and write permissions to User, Group, and Others
+alias 755='chmod -R 755'                # give all permissions to User. Group and Other have read and execute permissions
+alias 777='chmod -R 777'                # give all permissions to User, Group, and Other
+
+# Uncompress files
+alias mktar='tar -cvf'                  # create a tar file file
+alias mkbz2='tar -cvjf'                 # create a tar file and filter by tbzip
+alias mkgz='tar -cvzf'                  # create a tar file using gzip
+alias untar='tar -xvf'                  # extract a tar file
+alias unbz2='tar -xvjf'                 # extract a tar file filtered by tbzip
+alias ungz='tar -xvzf'                  # extract a .
