@@ -1,3 +1,10 @@
+gitrepo() {
+    repo=$(git branch 2> /dev/null | gawk 'NF==2 {print $2}')
+    if [ -n "$repo" ]; then
+        echo " ($repo)"
+    fi
+}
+
 function __setprompt
 {
         local LAST_COMMAND=$? # Must come first!

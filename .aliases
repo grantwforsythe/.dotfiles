@@ -49,7 +49,7 @@ alias gc='git commit'
 alias gl='git log --pretty=oneline --abbrev-commit --graph'
 
 # Easy navigation: ~, .., ..., ....
-Alias ~='cd ~'
+alias ~='cd ~'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
