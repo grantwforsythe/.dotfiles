@@ -1,0 +1,69 @@
+# espanso configuration file
+
+# This is the default configuration file, change it as you like it
+# You can refer to the official documentation:
+# https://espanso.org/docs/
+
+# Matches are the substitution rules, when you type the "trigger" string
+# it gets replaced by the "replace" string.
+matches:
+  # Output my full name
+  - trigger: ":myname"
+    replace: "Grant Forsythe"
+
+  # Output my personal email
+  - trigger: ":myemail"
+    replace: "grantwforsythe@gmail.com"
+
+  # Output my personal email signature
+  - trigger: ":kr"
+    replace: "Kind Regards,\nGrant\n"
+
+  # Output the url to my personal website
+  - trigger: "www"
+    replace: "https://grantwforsythe.com"
+
+  # Output the current time (24 hours)
+  - trigger: ":now"
+    replace: "{{mytime}}" 
+    vars:
+      - name: mytime
+        type: date
+        params:
+          format: "%H:%M"
+  
+  # Outputs a secure 16 character long password and copies it to a clip board
+  - trigger: ":genpass"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: script
+        params:
+          args:
+            - python
+            - "%CONFIG%/scripts/password_generator.py"
+
+  # Outputs the current date (e.g. Oct 17 2021)
+  - trigger: ":date"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%B %d %Y"
+
+  # Outputs public IP address
+  - trigger: ":ip"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "curl 'https://api.ipify.org'"
+          shell: wsl
+  
+  # You can use forms to collect input to form a larger action
+  - trigger: ":greet"
+    form: |
+      Hey {{name}},
+      Happy Birthday!
