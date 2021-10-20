@@ -14,6 +14,7 @@ is_app_installed(){
 
 # constants
 HOMEDIR=$1
+USER=$(whoami)
 
 # dotfiles directory
 DOTFILEDIR=${HOMEDIR}/dotfiles
@@ -60,6 +61,14 @@ for file in ${FILES}; do
     ln -sf ${DOTFILEDIR}/.${file} ${HOMEDIR}/.${file}
 done
 
+# create the config directory if it doesn't exist
+if [ -d ${HOMEDIR}/${USER}/.config ]; then
+    mkdir ${HOMEDIR}/${USER}/.config
+fi
+
+# create a symlink for the espanso config
+ ln -sf ${DOTFILEDIR}/espanso ${HOMEDIR}/${USER}/.config
+ 
 # source tmux.conf
 echo "Sourcing.tmux.conf..."
 tmux source-file ${HOMEDIR}/.tmux.conf
