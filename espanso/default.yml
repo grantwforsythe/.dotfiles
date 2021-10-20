@@ -20,7 +20,7 @@ matches:
     replace: "Kind Regards,\nGrant\n"
 
   # Output the url to my personal website
-  - trigger: "www"
+  - trigger: ":mywww"
     replace: "https://grantwforsythe.com"
 
   # Output the current time (24 hours)
