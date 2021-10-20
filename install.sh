@@ -60,6 +60,14 @@ for file in ${FILES}; do
     ln -sf ${DOTFILEDIR}/.${file} ${HOMEDIR}/.${file}
 done
 
+# create the config directory if it doesn't exist
+if [ ! -d ${HOMEDIR}/.config ]; then
+    mkdir ${HOMEDIR}/.config
+fi
+
+# create a symlink for the espanso config
+ln -sf ${DOTFILEDIR}/espanso ${HOMEDIR}/.config/
+ 
 # source tmux.conf
 echo "Sourcing.tmux.conf..."
 tmux source-file ${HOMEDIR}/.tmux.conf
