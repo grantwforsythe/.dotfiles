@@ -22,7 +22,11 @@ matches:
   # Output the url to my personal website
   - trigger: ":mywww"
     replace: "https://grantwforsythe.com"
-
+  
+  # Output my username
+  - trigger: ":user"
+    replace: "grantwforsythe"
+    
   # Output the current time (24 hours)
   - trigger: ":now"
     replace: "{{mytime}}" 
@@ -31,6 +35,15 @@ matches:
         type: date
         params:
           format: "%H:%M"
+  
+  # Outputs the current date (e.g. Oct 17 2021)
+  - trigger: ":date"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%B %d %Y"
   
   # Outputs a secure 16 character long password and copies it to a clip board
   - trigger: ":genpass"
@@ -43,15 +56,6 @@ matches:
             - python
             - "%CONFIG%/scripts/password_generator.py"
 
-  # Outputs the current date (e.g. Oct 17 2021)
-  - trigger: ":date"
-    replace: "{{mydate}}"
-    vars:
-      - name: mydate
-        type: date
-        params:
-          format: "%B %d %Y"
-
   # Outputs public IP address
   - trigger: ":ip"
     replace: "{{output}}"
@@ -61,9 +65,3 @@ matches:
         params:
           cmd: "curl 'https://api.ipify.org'"
           shell: wsl
-  
-  # You can use forms to collect input to form a larger action
-  - trigger: ":greet"
-    form: |
-      Hey {{name}},
-      Happy Birthday!
