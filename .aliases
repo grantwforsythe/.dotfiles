@@ -47,6 +47,7 @@ alias gnco='git checkout -b'
 alias gs='git status'
 alias gc='git commit'
 alias gl='git log --pretty=oneline --abbrev-commit --graph'
+alias gp='git fetch --prune'
 
 # Easy navigation: ~, .., ..., ....
 alias ~='cd ~'
