@@ -11,6 +11,7 @@
     local = green bold
     remote = cyan bold
 [alias]
+    undo = reset HEAD~
     unstage = reset HEAD --
     last = log -1 HEAD
     prune = fetch --prune
