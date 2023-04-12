@@ -21,7 +21,7 @@ DOTFILEDIR=${HOMEDIR}/dotfiles
 BUNDLE=${HOMEDIR}/.vim/bundle/
 
 # list of FILES/folders to symlink in ${HOMEDIR}
-FILES="functions aliases bash_prompt bash_profile bashrc zshrc p10k.zsh vimrc tmux.conf gitconfig"
+FILES="functions aliases bash_prompt bash_profile bashrc zshrc p10k.zsh vimrc tmux.conf gitconfig exports"
 
 # how to use this script
 if [ "$#" -ne 1 ]; then
@@ -62,12 +62,12 @@ for file in ${FILES}; do
 done
 
 # create the config directory if it doesn't exist
-if [ -d ${HOMEDIR}/${USER}/.config ]; then
-    mkdir ${HOMEDIR}/${USER}/.config
+if [ ! -d ${HOMEDIR}/.config ]; then
+    mkdir ${HOMEDIR}/.config
 fi
 
 # create a symlink for the espanso config
- ln -sf ${DOTFILEDIR}/espanso ${HOMEDIR}/${USER}/.config
+ln -sf ${DOTFILEDIR}/espanso ${HOMEDIR}/.config/
  
 # source tmux.conf
 echo "Sourcing.tmux.conf..."
