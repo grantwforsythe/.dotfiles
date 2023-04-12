@@ -14,6 +14,7 @@ is_app_installed(){
 
 # constants
 HOMEDIR=$1
+USER=$(whoami)
 
 # dotfiles directory
 DOTFILEDIR=${HOMEDIR}/dotfiles

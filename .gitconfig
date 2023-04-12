@@ -10,6 +10,13 @@
     current = yellow bold
     local = green bold
     remote = cyan bold
+[alias]
+    undo = reset HEAD~
+    unstage = reset HEAD --
+    last = log -1 HEAD
+    prune = fetch --prune
+    logp = log --oneline --graph --decorate --all
+    ammend = commit --amend
 [color "diff"]
     meta = yellow bold
     frag = magenta bold
@@ -25,4 +32,6 @@
 [init]
     defaultBranch = main
 [submodule]
-	recurse = true
+    recurse = true
+[diff]
+    tool = vimdiff
