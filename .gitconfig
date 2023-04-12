@@ -15,7 +15,7 @@
     unstage = reset HEAD --
     last = log -1 HEAD
     prune = fetch --prune
-    logp = log --oneline --graph --decorate --all
+    logp = log --oneline --graph --decorate --abbrev-commit --all
     ammend = commit --amend
 [color "diff"]
     meta = yellow bold
