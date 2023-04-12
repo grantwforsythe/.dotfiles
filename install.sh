@@ -66,9 +66,6 @@ if [ ! -d ${HOMEDIR}/.config ]; then
     mkdir ${HOMEDIR}/.config
 fi
 
-# create a symlink for the espanso config
-ln -sf ${DOTFILEDIR}/espanso ${HOMEDIR}/.config/
- 
 # source tmux.conf
 echo "Sourcing.tmux.conf..."
 tmux source-file ${HOMEDIR}/.tmux.conf
