@@ -21,7 +21,7 @@ DOTFILEDIR=${HOMEDIR}/dotfiles
 BUNDLE=${HOMEDIR}/.vim/bundle/
 
 # list of FILES/folders to symlink in ${HOMEDIR}
-FILES="functions aliases bash_prompt bash_profile bashrc zshrc p10k.zsh vimrc tmux.conf gitconfig"
+FILES="functions aliases bash_prompt bash_profile bashrc zshrc p10k.zsh vimrc tmux.conf gitconfig exports"
 
 # how to use this script
 if [ "$#" -ne 1 ]; then
