@@ -38,17 +38,6 @@ alias evrc='edit ~/.vimrc'
 alias sedit='edit ~/.shh/config'
 alias vi='vim'
 
-# Git aliases
-alias g='git'
-alias gc='git clone'
-alias gco='git checkout'
-alias gbr='git branch'
-alias gnco='git checkout -b'
-alias gs='git status'
-alias gc='git commit'
-alias gl='git log --pretty=oneline --abbrev-commit --graph'
-alias gp='git fetch --prune'
-
 # Easy navigation: ~, .., ..., ....
 alias ~='cd ~'
 alias ..='cd ..'
