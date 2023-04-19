@@ -16,7 +16,7 @@
     last = log -1 HEAD
     prune = fetch --prune
     logp = log --oneline --graph --decorate --abbrev-commit --all
-    ammend = commit --amend
+    amend = commit --amend --no-edit
     blame = blame --color-lines --color-by-age
 [color "diff"]
     meta = yellow bold
