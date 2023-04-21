@@ -13,6 +13,7 @@
 [alias]
     undo = reset HEAD~
     unstage = reset HEAD --
+    discard = "!git reset --hard && git clean -f"
     last = log -1 HEAD
     prune = fetch --prune
     logp = log --oneline --graph --decorate --abbrev-commit --all
