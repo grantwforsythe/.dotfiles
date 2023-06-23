@@ -35,3 +35,5 @@
     recurse = true
 [diff]
     tool = vimdiff
+[push]
+    autoSetupRemote = true
