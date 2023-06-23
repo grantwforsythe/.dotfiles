@@ -2,7 +2,7 @@
 
 ###################################
 # This script creates symlinks from the home directory to
-# any desired dotfiles in ${HOMEDIR}/dotfiles.
+# any desired dotfiles in ${HOME}/dotfiles.
 ###################################
 
 # error handling
@@ -13,21 +13,14 @@ is_app_installed(){
 }
 
 # constants
-HOMEDIR=$1
 USER=$(whoami)
 
 # dotfiles directory
-DOTFILEDIR=${HOMEDIR}/dotfiles
-BUNDLE=${HOMEDIR}/.vim/bundle/
+DOTFILEDIR=${HOME}/dotfiles
+BUNDLE=${HOME}/.vim/bundle/
 
-# list of FILES/folders to symlink in ${HOMEDIR}
+# list of FILES/folders to symlink in ${HOME}
 FILES="functions aliases bash_prompt bash_profile bashrc zshrc p10k.zsh vimrc tmux.conf gitconfig exports"
-
-# how to use this script
-if [ "$#" -ne 1 ]; then
-    echo "Usage: install.sh <home_directory>"
-    exit 1
-fi
 
 # check if tmux is installed
 if ! is_app_installed tmux ; then
@@ -58,17 +51,12 @@ echo "...done."
 # NOTE: will overwrite old dotFILES
 for file in ${FILES}; do
     echo "Creating symlink to $file in home directory."
-    ln -sf ${DOTFILEDIR}/.${file} ${HOMEDIR}/.${file}
+    ln -sf ${DOTFILEDIR}/.${file} ${HOME}/.${file}
 done
-
-# create the config directory if it doesn't exist
-if [ ! -d ${HOMEDIR}/.config ]; then
-    mkdir ${HOMEDIR}/.config
-fi
 
 # source tmux.conf
 echo "Sourcing.tmux.conf..."
-tmux source-file ${HOMEDIR}/.tmux.conf
+tmux source-file ${HOME}/.tmux.conf
 echo "...finished sourcing."
 
 # setting up Vundle 

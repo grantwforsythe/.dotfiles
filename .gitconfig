@@ -13,10 +13,12 @@
 [alias]
     undo = reset HEAD~
     unstage = reset HEAD --
+    discard = "!git reset --hard && git clean -f"
     last = log -1 HEAD
-    prune = fetch --prune
     logp = log --oneline --graph --decorate --abbrev-commit --all
-    ammend = commit --amend
+    amend = commit --amend --no-edit
+    blame = blame --color-lines --color-by-age
+    rename = branch -M
 [color "diff"]
     meta = yellow bold
     frag = magenta bold
@@ -35,5 +37,8 @@
     recurse = true
 [diff]
     tool = vimdiff
+[fetch]
+    # automatically prune when fetching or pulling
+    prune = true
 [push]
     autoSetupRemote = true
