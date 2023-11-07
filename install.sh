@@ -20,7 +20,7 @@ DOTFILEDIR=${HOME}/dotfiles
 BUNDLE=${HOME}/.vim/bundle/
 
 # list of FILES/folders to symlink in ${HOME}
-FILES="functions aliases bash_prompt bash_profile bashrc zshrc p10k.zsh vimrc tmux.conf gitconfig exports Xmodmap"
+FILES="functions aliases bash_prompt bash_profile bashrc zshrc vimrc tmux.conf gitconfig exports Xmodmap"
 
 # check if tmux is installed
 if ! is_app_installed tmux ; then
