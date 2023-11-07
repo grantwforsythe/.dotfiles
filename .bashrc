@@ -37,6 +37,10 @@ if [[ $iatest > 0 ]]; then bind "set completion-ignore-case on"; fi
 # Show auto-completion list automatically, without double tab
 if [[ $iatest > 0 ]]; then bind "set show-all-if-ambiguous On"; fi
 
+# Load other dotfiles
 for file in ~/.{bash_prompt,aliases,functions,exports}; do
     source "$file";
 done;
+
+# Load key mappings
+xmodmap ~/.Xmodmap
