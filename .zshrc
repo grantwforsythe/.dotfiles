@@ -85,6 +85,7 @@ plugins=(
     aliases
     colored-man-pages
     git
+    nvm
     zsh-autosuggestions
     zsh-syntax-highlighting
 )
@@ -92,6 +93,13 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+source ~/.functions
+source ~/.exports
+
+# Get NVM working
+# https://superuser.com/questions/1403007/zsh-npm-node-nvm-command-not-found-after-installing-ohmyzsh
+export NVM_DIR=~/.nvm
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 # Basic auto/tab completion
 autoload -U compinit
@@ -160,7 +168,3 @@ bindkey '^e' edit-command-line
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source ~/.aliases
-source ~/.functions
-source ~/.exports
-xmodmap ~/.Xmodmap
-
