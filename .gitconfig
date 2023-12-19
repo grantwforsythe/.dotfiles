@@ -4,6 +4,8 @@
     username = grantwforsythe
 [core]
     editor = vim
+[log]
+    follow = true
 [color]
     ui = auto
 [color "branch"]
