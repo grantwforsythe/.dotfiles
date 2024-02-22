@@ -88,7 +88,6 @@ plugins=(
     nvm
     zsh-autosuggestions
     zsh-syntax-highlighting
-    thefuck
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -101,9 +100,6 @@ source ~/.exports
 # https://superuser.com/questions/1403007/zsh-npm-node-nvm-command-not-found-after-installing-ohmyzsh
 export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-
-# Alias thefuck to something more...pleasant
-eval $(thefuck --alis oops)
 
 # Basic auto/tab completion
 autoload -U compinit
@@ -172,7 +168,3 @@ bindkey '^e' edit-command-line
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source ~/.aliases
-
-
-# Load Angular CLI autocompletion.
-source <(ng completion script)
