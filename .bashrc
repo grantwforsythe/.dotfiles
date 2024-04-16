@@ -42,5 +42,8 @@ for file in ~/.{bash_prompt,aliases,functions,exports}; do
     source "$file";
 done;
 
+# Append local binaries to $PATH
+export PATH=$PATH:~/.local/bin 
+
 # Load key mappings
 xmodmap ~/.Xmodmap

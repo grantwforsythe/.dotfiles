@@ -86,8 +86,6 @@ plugins=(
     colored-man-pages
     git
     nvm
-    zsh-autosuggestions
-    zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -95,6 +93,9 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 source ~/.functions
 source ~/.exports
+
+# Append local binaries to $PATH
+export PATH=$PATH:~/.local/bin
 
 # Get NVM working
 # https://superuser.com/questions/1403007/zsh-npm-node-nvm-command-not-found-after-installing-ohmyzsh
