@@ -83,7 +83,12 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     aliases
+    command-not-found
     colored-man-pages
+    colorize
+    docker
+    dotenv
+    fzf
     git
     nvm
 )
