@@ -17,6 +17,7 @@ alias rebootsafe='sudo shutdown -r now'
 alias rebootforce='sudo shutdown -r -n now'
 alias tree='tree -CAhF --dirsfirst'
 alias treed='tree -CAFd'
+alias lg='lazygit'
 
 # Listing files
 alias la='ls -Alh'                      # show hidden files
