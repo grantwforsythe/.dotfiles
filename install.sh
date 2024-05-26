@@ -59,7 +59,7 @@ echo "Sourcing.tmux.conf..."
 tmux source-file ${HOME}/.tmux.conf
 echo "...finished sourcing."
 
-# setting up Vundle 
+# setting up Vundle
 if [ ! -d "${BUNDLE}" ]; then
     echo "Installing Vundle"
     git clone https://github.com/VundleVim/Vundle.vim.git ${BUNDLE}/Vundle.vim
