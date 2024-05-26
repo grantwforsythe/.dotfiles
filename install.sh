@@ -70,5 +70,14 @@ fi
 echo "Installing Vim Plugins via Vundle"
 vim +PluginInstall +qall
 
+# Install zsh and set as default shell
+sudo apt install zsh
+chsh -s $(which zsh)
+
 # install ohmyzsh
+echo "Install Oh My ZSH and related plugins"
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Install zsh plugins
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
