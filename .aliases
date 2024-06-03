@@ -18,6 +18,7 @@ alias rebootforce='sudo shutdown -r -n now'
 alias tree='tree -CAhF --dirsfirst'
 alias treed='tree -CAFd'
 alias lg='lazygit'
+alias bat='batcat --theme=gruvbox-dark'
 
 # Listing files
 alias la='ls -Alh'                      # show hidden files
@@ -35,9 +36,9 @@ alias lsd="ls -d */"                    # directories only
 # Editing and vim aliases
 alias ebrc='edit ~/.bashrc'
 alias ezsh='edit ~/.zshrc'
-alias evrc='edit ~/.vimrc'
 alias sedit='edit ~/.shh/config'
-alias vi='vim'
+alias vi='nvim'
+alias vim='nvim'
 
 # Easy navigation: ~, .., ..., ....
 alias ~='cd ~'
@@ -47,7 +48,7 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
 # Python aliases
-alias python='python3' 
+alias python='python3'
 alias pip='pip3'
 alias mkvenv='python -m venv venv'
 alias venv='source venv/bin/activate'
