@@ -102,10 +102,10 @@ source ~/.functions
 source ~/.exports
 
 # Append local binaries to $PATH
-export PATH=$PATH:~/.local/bin
+export PATH="$PATH:~/.local/bin:/opt/nvim-linux64/bin"
 
-# Get NVM working
 # https://superuser.com/questions/1403007/zsh-npm-node-nvm-command-not-found-after-installing-ohmyzsh
+# Get NVM working
 export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
