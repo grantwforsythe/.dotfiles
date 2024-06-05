@@ -34,9 +34,10 @@ alias lf="ls -l | egrep -v '^d'"        # files only
 alias lsd="ls -d */"                    # directories only
 
 # Editing and vim aliases
-alias ebrc='edit ~/.bashrc'
-alias ezsh='edit ~/.zshrc'
-alias sedit='edit ~/.shh/config'
+alias ebrc='nvim ~/.bashrc'
+alias ezsh='nvim ~/.zshrc'
+alias evim='nvim ~/.config/nvim'
+alias essh='nvim ~/.shh/config'
 alias vi='nvim'
 alias vim='nvim'
 
