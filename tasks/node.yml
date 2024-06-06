@@ -1,0 +1,22 @@
+
+- hosts: localhost
+  become: true
+  pre_tasks:
+    - name: Update cache
+      apt:
+        update_cache: true
+      tags:
+        - zsh
+        - node
+    - name: Install nvm
+      shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | zsh
+      tags:
+        - node
+    - name: Install node version 20.14.0
+      shell: nvm install 20.14.0
+      tags:
+        - node
+    - name: Use the downloaded version of node
+      shell: nvm use 20.14.0
+      tags:
+        - node

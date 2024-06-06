@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+sudo apt repository -y ppa:ansible/ansible
+sudo apt update -y
+sudo apt install -y curl git  software-properties-common ansible
+
+## Get the local.yml file from this repo
+sudo ansible-pull -U https://github.com/ThePrimeagen/ansible.git
