@@ -98,8 +98,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-source ~/.functions
-source ~/.exports
+source ~/.zsh_profile
 
 # Append local binaries to $PATH
 export PATH="$PATH:~/.local/bin:/opt/nvim-linux64/bin"
@@ -200,4 +199,3 @@ load-nvmrc
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-source ~/.aliases
