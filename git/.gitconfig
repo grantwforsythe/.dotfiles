@@ -39,8 +39,12 @@
     recurse = true
 [diff]
     tool = vimdiff
+    submodule = log
 [fetch]
     # automatically prune when fetching or pulling
     prune = true
 [push]
     autoSetupRemote = true
+    recurseSubmodules = check
+[status]
+    submodulesummary = 1
