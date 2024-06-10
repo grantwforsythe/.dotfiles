@@ -1,3 +1,6 @@
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
+
 # Shortcuts
 alias cp='cp -i'
 alias mv='mv -i'
@@ -94,6 +97,8 @@ export LESS_TERMCAP_se=$'\E[0m'
 export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
+
+bindkey -s ^f "tmux-sessionizer\n"
 
 # Store the environment in the Python package
 export PIPENV_VENV_IN_PROJECT=1

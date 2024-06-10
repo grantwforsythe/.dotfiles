@@ -97,11 +97,8 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-source ~/.zsh_profile
-
 # Append local binaries to $PATH
-export PATH="$PATH:~/.local/bin:/opt/nvim-linux64/bin"
+export PATH="$PATH:$HOME/.local/bin:/opt/nvim-linux64/bin"
 
 # https://superuser.com/questions/1403007/zsh-npm-node-nvm-command-not-found-after-installing-ohmyzsh
 # Get NVM working
@@ -199,3 +196,6 @@ load-nvmrc
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+# User configuration
+source ~/.zsh_profile
+

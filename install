@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+find . -maxdepth 1 -mindepth 1 -type d ! -name '.*' \
+    | sed 's|^\./||' \
+    | tr '\n' ' ' \
+    | awk '{$1=$1; print}' \
+    | stow
