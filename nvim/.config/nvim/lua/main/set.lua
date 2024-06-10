@@ -2,6 +2,13 @@
 vim.opt.compatible = false
 vim.cmd('filetype off')  -- Change the way Neovim caches filetype rules at runtime
 
+-- Remove background color for the current line in Netrw and make the text bold
+vim.cmd [[
+  autocmd FileType netrw highlight CursorLine guibg=NONE gui=bold
+]]
+
+vim.g.mapleader = ' ' -- Set space as leader
+
 vim.opt.relativenumber = true  -- Relative line numbers
 vim.opt.number = true  -- Absolute line numbers
 
@@ -31,10 +38,7 @@ vim.opt.signcolumn = 'yes'
 
 vim.opt.updatetime = 50
 
--- Set space as leader
-vim.g.mapleader = ' '
-
-vim.opt.errorbells = false
+vim.opt.errorbells = false -- Disable annoying errorbells
 
 vim.opt.hidden = true  -- Allow hidden buffers
 
@@ -49,10 +53,3 @@ vim.opt.listchars = {
 }
 
 vim.opt.clipboard = 'unnamed'  -- Use system clipboard
-
--- Display current working directory in status line
-vim.opt.laststatus = 2
-vim.opt.statusline = '%!getcwd()'
-
-vim.opt.colorcolumn = '120'  -- Highlight column 100
-vim.cmd('highlight ColorColumn ctermbg=0 guibg=lightgrey')
