@@ -22,6 +22,7 @@ alias tree='tree -CAhF --dirsfirst'
 alias treed='tree -CAFd'
 alias lg='lazygit'
 alias bat='batcat --theme=gruvbox-dark'
+alias g='git'
 
 # Listing files
 alias la='ls -Alh'                      # show hidden files
