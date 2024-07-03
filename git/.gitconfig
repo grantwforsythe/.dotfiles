@@ -3,7 +3,7 @@
     email = grantwforsythe@gmail.com
     username = grantwforsythe
 [core]
-    editor = vim
+    editor = nvim
 [log]
     follow = true
 [color]
