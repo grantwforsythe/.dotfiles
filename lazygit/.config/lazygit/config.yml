@@ -20,6 +20,8 @@ gui:
   # One of 'substring' (default) | 'fuzzy'
   filterMode: fuzzy
 
+  showFileTree: false
+
 # Config relating to git
 git:
   # If true, parse emoji strings in commit messages e.g. render :rocket: as 🚀
