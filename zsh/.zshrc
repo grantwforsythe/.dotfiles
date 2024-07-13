@@ -1,3 +1,6 @@
+# Start tmux session by default
+if [ "$TMUX" = "" ]; then tmux; fi
+
 # Not sure what this part is so I am commenting this out
 # for filename in /etc/profile.d/*; do source $filename; done;
 
