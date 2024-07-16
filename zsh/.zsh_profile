@@ -6,15 +6,13 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -iv'
 alias mkdir='mkdir -p'
-alias grep='grep --color=auto'
+alias grep='rg --color=auto'
 alias ps='ps auxf'                                      # view jobs
 alias ping='ping -c 10'
 alias less='less -R'
 alias cls='clear'
 alias bd='cd "$OLDPWD"'
 alias rmd='/bin/rm  --recursive --force --verbose '
-alias h="history | grep "
-alias f="find . | grep "
 alias countfiles="for t in files links directories; do echo \`find . -type \${t:0:1} | wc -l\` \$t; done 2> /dev/null"
 alias rebootsafe='sudo shutdown -r now'
 alias rebootforce='sudo shutdown -r -n now'
