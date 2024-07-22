@@ -1,6 +1,11 @@
 $currentPath = $PWD.Path  
 
-Copy-Item -Path $currentPath\Microsoft.PowerShell_profile.ps1 -Destination $env:USERPROFILE\Documents\WindowsPowershell\Microsoft.PowerShell_profile.ps1 -Force
+cd $currentPath\powershell
+if (Test-Path -LiteralPath $env:USERPROFILE\Documents\WindowsPowershell\Microsoft.PowerShell_profile.ps1) {
+  Remove-Item -LiteralPath $env:USERPROFILE\Documents\WindowsPowershell\Microsoft.PowerShell_profile.ps1
+}
+
+New-Item -Path $env:USERPROFILE\Documents\WindowsPowershell\Microsoft.PowerShell_profile.ps1 -ItemType SymbolicLink -Value Microsoft.PowerShell_profile.ps1
 
 cd $currentPath\git
 if (Test-Path -LiteralPath $env:USERPROFILE\.gitconfig) {
