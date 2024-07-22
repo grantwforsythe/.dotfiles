@@ -27,6 +27,9 @@ git:
   # If true, parse emoji strings in commit messages e.g. render :rocket: as 🚀
   # (This should really be under 'gui', not 'git')
   parseEmoji: true
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
 
 os:
   editPreset: nvim

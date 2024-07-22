@@ -4,6 +4,18 @@
     username = grantwforsythe
 [core]
     editor = nvim
+    pager = delta --hyperlinks --blame-palette="#273732"
+[delta]
+    navigate = true
+    line-numbers = true
+    side-by-side = true
+    plus-style = syntax "#273732"
+    keep-plus-minus-markers = true
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
+    submodule = log
 [log]
     follow = true
 [color]
@@ -42,11 +54,7 @@
     defaultBranch = main
 [submodule]
     recurse = true
-[diff]
-    tool = vimdiff
-    submodule = log
 [fetch]
-    # automatically prune when fetching or pulling
     prune = true
 [push]
     autoSetupRemote = true
