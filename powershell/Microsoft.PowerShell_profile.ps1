@@ -1,6 +1,7 @@
 Set-Alias vim nvim
 Set-Alias vi nvim
 Set-Alias g git
+Set-Alias lg lazygit
 
 # Set Starship as prompt
 Invoke-Expression (&starship init powershell)
