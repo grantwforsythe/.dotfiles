@@ -25,9 +25,11 @@
     local = green bold
     remote = cyan bold
 [alias]
+    a = add
     amend = commit --amend --no-edit
     blame = blame --color-lines --color-by-age -w -M3
     br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+    c = commit
     last = "!git --no-pager log -1 HEAD"
     lg = "!git log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) %C(blue)[%an]\" --abbrev-commit -30"
     logp = log --oneline --graph --decorate --abbrev-commit --all

@@ -42,3 +42,5 @@ if (Test-Path -LiteralPath $env:LOCALAPPDATA\starship) {
 
 New-Item -Path $env:LOCALAPPDATA -Name "starship" -ItemType Directory
 New-Item -Path $env:LOCALAPPDATA\starship\starship.toml -ItemType SymbolicLink -Value starship.toml
+
+cd $currentPath
