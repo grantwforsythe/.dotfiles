@@ -11,6 +11,12 @@ $ENV:STARSHIP_CACHE = "$APPDATA\Temp"
 
 # Git autocomplete
 Import-Module posh-git
+
+Import-Module PSFzf
+
+# Enable tab autocomplete
+Set-PsFzfOption -EnableAliasFuzzyHistory
+
 # Enable VI mode
 Import-Module PSReadLine
 
@@ -26,3 +32,6 @@ Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 
 Set-PSReadLineOption -ShowToolTips
 Set-PSReadLineOption -PredictionSource History
+
+Set-PSReadLineKeyHandler -Key Ctrl+r -ScriptBlock { Invoke-FuzzyHistory }
+
