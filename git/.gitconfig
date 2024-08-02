@@ -61,6 +61,7 @@
 [push]
     autoSetupRemote = true
     recurseSubmodules = check
+    autoSetupRemote = true
 [status]
     submodulesummary = 1
 [pager]
