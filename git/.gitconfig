@@ -59,7 +59,6 @@
 [fetch]
     prune = true
 [push]
-    autoSetupRemote = true
     recurseSubmodules = check
     autoSetupRemote = true
 [status]
