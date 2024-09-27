@@ -161,6 +161,7 @@ fi
 FNM_PATH="$HOME/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
   export PATH="$HOME/.local/share/fnm:$PATH"
-  eval "`fnm env`"
+  eval "$(fnm env --use-on-cd --corepack-enabled --version-file-strategy recursive)"
 fi
 eval "$(starship init zsh)"
+export PATH=$PATH$:~/.dotnet/tools
