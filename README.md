@@ -1,7 +1,7 @@
 # .Dotfiles
 ## Requirements
 1. Ensure all packages are installed from git@github.com:grantwforsythe/ansible.git
-2. Ensure __JetBrainsMono Nerd Font__ is installed
+2. Ensure __JetBrainsMono Nerd Font__ is installed (this font is built into wezterm)
 
 ## Install
 ```sh
