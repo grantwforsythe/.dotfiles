@@ -9,6 +9,8 @@ config.window_padding = {
 	top = 5,
 }
 
+config.font_size = 14.0
+
 config.window_close_confirmation = "NeverPrompt"
 
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
@@ -30,6 +32,26 @@ config.keys = {
 		mods = "LEADER",
 		key = "c",
 		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
+	},
+	{
+		mods = "LEADER",
+		key = "-",
+		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
+	},
+	{
+		mods = "LEADER",
+		key = "=",
+		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+	},
+	{
+		mods = "LEADER",
+		key = "x",
+		action = wezterm.action.CloseCurrentPane({ confirm = true }),
+	},
+	{
+		mods = "LEADER",
+		key = "&",
+		action = wezterm.action.CloseCurrentTab({ confirm = true }),
 	},
 	{
 		mods = "LEADER",
