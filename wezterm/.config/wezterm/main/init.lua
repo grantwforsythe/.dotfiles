@@ -1,6 +1,24 @@
 local wezterm = require("wezterm")
 
+-- Maximize on startup
+wezterm.on("gui-startup", function(cmd)
+	local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
+	window:gui_window():maximize()
+end)
+
 local config = wezterm.config_builder()
+
+if wezterm.target_triple == "x86_64-pc-windows-msvc" then
+	config.default_prog = { "powershell", "-NoLogo" }
+	config.launch_menu = {
+		{
+			label = "PowerShell",
+			args = { "powershell.exe", "-NoLogo" },
+		},
+	}
+end
+
+config.hide_tab_bar_if_only_one_tab = true
 
 config.window_padding = {
 	left = 5,
@@ -8,6 +26,8 @@ config.window_padding = {
 	bottom = 5,
 	top = 5,
 }
+
+-- TODO: Add key maps to select specific windows
 
 config.font_size = 14.0
 
@@ -58,12 +78,18 @@ config.keys = {
 		key = "m",
 		action = wezterm.action.ToggleFullScreen,
 	},
+
+	{
+		mods = "LEADER",
+		key = "t",
+		action = wezterm.action.ShowTabNavigator,
+	},
 }
 
 -----------------------------------------------
 --                   Plugins                 --
 -----------------------------------------------
-local sessionizer = wezterm.plugin.require("https://github.com/ElCapitanSponge/sessionizer.wezterm")
+local sessionizer = require("main.plugins.sessionizer")
 local projects = {
 	"~",
 	"~/repos",

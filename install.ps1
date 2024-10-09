@@ -1,4 +1,4 @@
-$currentPath = $PWD.Path  
+$currentPath = $PWD.Path
 
 cd $currentPath\powershell
 if (Test-Path -LiteralPath $env:USERPROFILE\Documents\WindowsPowershell\Microsoft.PowerShell_profile.ps1) {
@@ -34,6 +34,13 @@ if (Test-Path -LiteralPath $env:LOCALAPPDATA\nvim) {
 }
 
 New-Item -Path $env:LOCALAPPDATA\nvim -ItemType SymbolicLink -Value nvim
+
+cd $currentPath\wezterm\.config\
+if (Test-Path -LiteralPath $env:USERPROFILE\.config\wezterm) {
+  Remove-Item -LiteralPath $env:USERPROFILE\.config\wezterm -Recurse
+}
+
+New-Item -Path $env:USERPROFILE\.config\wezterm -ItemType SymbolicLink -Value wezterm
 
 cd $currentPath\starship\.config\
 if (Test-Path -LiteralPath $env:LOCALAPPDATA\starship) {
