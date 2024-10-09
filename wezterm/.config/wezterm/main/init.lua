@@ -1,11 +1,4 @@
 local wezterm = require("wezterm")
-local mux = wezterm.mux
-
--- Start in fullscreen
-wezterm.on("gui-startup", function(cmd)
-	local tab, pane, window = mux.spawn_window(cmd or {})
-	window:gui_window():maximize()
-end)
 
 local config = wezterm.config_builder()
 
@@ -16,22 +9,32 @@ config.window_padding = {
 	top = 5,
 }
 
+config.window_close_confirmation = "NeverPrompt"
+
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {
+	-- Next tab
 	{
 		mods = "LEADER",
 		key = "n",
 		action = wezterm.action.ActivateTabRelative(1),
 	},
+	-- Previous tab
 	{
 		mods = "LEADER",
 		key = "p",
 		action = wezterm.action.ActivateTabRelative(-1),
 	},
+	-- Create new tab
 	{
 		mods = "LEADER",
 		key = "c",
 		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
+	},
+	{
+		mods = "LEADER",
+		key = "m",
+		action = wezterm.action.ToggleFullScreen,
 	},
 }
 
