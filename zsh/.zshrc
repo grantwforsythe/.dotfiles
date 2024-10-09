@@ -1,5 +1,5 @@
 # Start tmux session by default
-if [ "$TMUX" = "" ]; then tmux; fi
+# if [ "$TMUX" = "" ]; then tmux; fi
 
 # Not sure what this part is so I am commenting this out
 # for filename in /etc/profile.d/*; do source $filename; done;
@@ -164,4 +164,3 @@ if [ -d "$FNM_PATH" ]; then
   eval "$(fnm env --use-on-cd --corepack-enabled --version-file-strategy recursive)"
 fi
 eval "$(starship init zsh)"
-export PATH=$PATH$:~/.dotnet/tools
