@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
 
+# get all directories from the root excluding powershell | remove leading './' | replace newlines with spaces | trim spaces
 folders=$(
-    find . -maxdepth 1 -mindepth 1 -type d ! -name '.*' ! -name 'powershell' \
-    | sed 's|^\./||' \     # Remove leading './'
-    | tr '\n' ' ' \        # Replace newlines with spaces 
-    | awk '{$1=$1; print}' # Trim leading and trailing spaces
+    find . -maxdepth 1 -mindepth 1 -type d ! -name '.*' ! -name 'powershell' | sed 's|^\./||' | tr '\n' ' ' | awk '{$1=$1; print}'
 )
 
 for folder in $folders
 do
     stow -D $folder
     stow $folder
+    echo $folder stowed
 done
