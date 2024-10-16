@@ -6,7 +6,7 @@ wezterm.on("gui-startup", function(cmd)
 	window:gui_window():maximize()
 end)
 
-local config = wezterm.config_builder()
+local config = require("main.global.config")
 
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	config.default_prog = { "powershell", "-NoLogo" }
@@ -18,73 +18,7 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	}
 end
 
-config.hide_tab_bar_if_only_one_tab = true
-
-config.window_padding = {
-	left = 5,
-	right = 5,
-	bottom = 5,
-	top = 5,
-}
-
--- TODO: Add key maps to select specific windows
-
-config.font_size = 14.0
-
-config.window_close_confirmation = "NeverPrompt"
-
-config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
-config.keys = {
-	-- Next tab
-	{
-		mods = "LEADER",
-		key = "n",
-		action = wezterm.action.ActivateTabRelative(1),
-	},
-	-- Previous tab
-	{
-		mods = "LEADER",
-		key = "p",
-		action = wezterm.action.ActivateTabRelative(-1),
-	},
-	-- Create new tab
-	{
-		mods = "LEADER",
-		key = "c",
-		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
-	},
-	{
-		mods = "LEADER",
-		key = "-",
-		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
-	},
-	{
-		mods = "LEADER",
-		key = "=",
-		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
-	},
-	{
-		mods = "LEADER",
-		key = "x",
-		action = wezterm.action.CloseCurrentPane({ confirm = true }),
-	},
-	{
-		mods = "LEADER",
-		key = "&",
-		action = wezterm.action.CloseCurrentTab({ confirm = true }),
-	},
-	{
-		mods = "LEADER",
-		key = "m",
-		action = wezterm.action.ToggleFullScreen,
-	},
-
-	{
-		mods = "LEADER",
-		key = "t",
-		action = wezterm.action.ShowTabNavigator,
-	},
-}
+config.keys = require("main.global.remap")
 
 -----------------------------------------------
 --                   Plugins                 --
