@@ -65,3 +65,5 @@
     submodulesummary = 1
 [pager]
 	branch = false
+[rerere]
+	enabled = true
