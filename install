@@ -1,14 +1,11 @@
 #!/usr/bin/env bash
 
-folders=$(
-    find . -maxdepth 1 -mindepth 1 -type d ! -name '.*' ! -name 'powershell' \
-    | sed 's|^\./||' \     # Remove leading './'
-    | tr '\n' ' ' \        # Replace newlines with spaces 
-    | awk '{$1=$1; print}' # Trim leading and trailing spaces
-)
+# find all dotfiles | remove leading './' | replace newlines with spaces | trim leading and trailing spaces
+folders=$(find . -maxdepth 1 -mindepth 1 -type d ! -name '.*' ! -name 'powershell' | sed 's|^\./||' | tr '\n' ' ' | awk '{$1=$1; print}')
 
 for folder in $folders
 do
     stow -D $folder
+    echo "Stowing $folder"
     stow $folder
 done
