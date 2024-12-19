@@ -66,7 +66,6 @@ return {
 		key = "f",
 		action = action.ToggleFullScreen,
 	},
-
 	{
 		mods = "LEADER",
 		key = "t",
