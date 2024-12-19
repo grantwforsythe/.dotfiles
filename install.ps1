@@ -1,53 +1,22 @@
-$currentPath = $PWD.Path
+function Create-SymbolicLink {
+    param(
+        [string]$TargetPath,
+        [string]$DestinationPath
+    )
 
-cd $currentPath\powershell
-if (Test-Path -LiteralPath $env:USERPROFILE\Documents\WindowsPowershell\Microsoft.PowerShell_profile.ps1) {
-  Remove-Item -LiteralPath $env:USERPROFILE\Documents\WindowsPowershell\Microsoft.PowerShell_profile.ps1
+    # If the target path exists, remove it
+    if (Test-Path -LiteralPath $TargetPath) {
+        Remove-Item -LiteralPath $TargetPath -Recurse
+    }
+
+    # Create the symbolic link
+    New-Item -Path $DestinationPath -ItemType SymbolicLink -Value $TargetPath
 }
 
-New-Item -Path $env:USERPROFILE\Documents\WindowsPowershell\Microsoft.PowerShell_profile.ps1 -ItemType SymbolicLink -Value Microsoft.PowerShell_profile.ps1
-
-cd $currentPath\git
-if (Test-Path -LiteralPath $env:USERPROFILE\.gitconfig) {
-  Remove-Item -LiteralPath $env:USERPROFILE\.gitconfig 
-}
-
-New-Item -Path $env:USERPROFILE\.gitconfig -ItemType SymbolicLink -Value .gitconfig
-
-cd $currentPath\alacritty\.config\
-if (Test-Path -LiteralPath $env:APPDATA\alacritty) {
-  Remove-Item -LiteralPath $env:APPDATA\alacritty -Recurse
-}
-
-New-Item -Path $env:APPDATA\alacritty -ItemType SymbolicLink -Value alacritty\
-
-cd $currentPath\lazygit\.config\
-if (Test-Path -LiteralPath $env:LOCALAPPDATA\lazygit) {
-  Remove-Item -LiteralPath $env:LOCALAPPDATA\lazygit -Recurse
-}
-
-New-Item -Path $env:LOCALAPPDATA\lazygit -ItemType SymbolicLink -Value lazygit\
-
-cd $currentPath\nvim\.config\
-if (Test-Path -LiteralPath $env:LOCALAPPDATA\nvim) {
-  Remove-Item -LiteralPath $env:LOCALAPPDATA\nvim -Recurse
-}
-
-New-Item -Path $env:LOCALAPPDATA\nvim -ItemType SymbolicLink -Value nvim
-
-cd $currentPath\wezterm\.config\
-if (Test-Path -LiteralPath $env:USERPROFILE\.config\wezterm) {
-  Remove-Item -LiteralPath $env:USERPROFILE\.config\wezterm -Recurse
-}
-
-New-Item -Path $env:USERPROFILE\.config\wezterm -ItemType SymbolicLink -Value wezterm
-
-cd $currentPath\starship\.config\
-if (Test-Path -LiteralPath $env:LOCALAPPDATA\starship) {
-  Remove-Item -LiteralPath $env:LOCALAPPDATA\starship -Recurse
-}
-
-New-Item -Path $env:LOCALAPPDATA -Name "starship" -ItemType Directory
-New-Item -Path $env:LOCALAPPDATA\starship\starship.toml -ItemType SymbolicLink -Value starship.toml
-
-cd $currentPath
+Create-SymbolicLink "$PWD.Path\powershell\Microsoft.PowerShell_profile.ps1" "$env:USERPROFILE\Documents\WindowsPowershell\Microsoft.PowerShell_profile.ps1"
+Create-SymbolicLink "$PWD.Path\git\.gitconfig" "$env:USERPROFILE\.gitconfig"
+Create-SymbolicLink "$PWD.Path\alacritty\.config" "$env:APPDATA\alacritty"
+Create-SymbolicLink "$PWD.Path\lazygit\.config" "$env:LOCALAPPDATA\lazygit"
+Create-SymbolicLink "$PWD.Path\nvim\.config" "$env:LOCALAPPDATA\nvim"
+Create-SymbolicLink "$PWD.Path\wezterm\.config" "$env:USERPROFILE\.config\wezterm"
+Create-SymbolicLink "$PWD.Path\starship\.config" "$env:LOCALAPPDATA\starship"
