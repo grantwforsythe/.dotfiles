@@ -1,74 +1,96 @@
 local wezterm = require("wezterm")
-local action = wezterm.action
+local act = wezterm.action
 
 return {
 	-- Next tab
 	{
 		mods = "LEADER",
 		key = "n",
-		action = action.ActivateTabRelative(1),
+		action = act.ActivateTabRelative(1),
 	},
 	-- Previous tab
 	{
 		mods = "LEADER",
 		key = "p",
-		action = action.ActivateTabRelative(-1),
+		action = act.ActivateTabRelative(-1),
 	},
 	-- Create new tab
 	{
 		mods = "LEADER",
 		key = "c",
-		action = action.SpawnTab("CurrentPaneDomain"),
+		action = act.SpawnTab("CurrentPaneDomain"),
 	},
 	{
 		mods = "LEADER",
 		key = "-",
-		action = action.SplitVertical({ domain = "CurrentPaneDomain" }),
+		action = act.SplitVertical({ domain = "CurrentPaneDomain" }),
 	},
 	{
 		mods = "LEADER",
 		key = "=",
-		action = action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+		action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 	},
 	-- Pane navigation with vim commands
 	{
 		mods = "LEADER",
 		key = "h",
-		action = action.ActivatePaneDirection("Left"),
+		action = act.ActivatePaneDirection("Left"),
 	},
 	{
 		mods = "LEADER",
 		key = "j",
-		action = action.ActivatePaneDirection("Down"),
+		action = act.ActivatePaneDirection("Down"),
 	},
 	{
 		mods = "LEADER",
 		key = "k",
-		action = action.ActivatePaneDirection("Up"),
+		action = act.ActivatePaneDirection("Up"),
 	},
 	{
 		mods = "LEADER",
 		key = "l",
-		action = action.ActivatePaneDirection("Right"),
+		action = act.ActivatePaneDirection("Right"),
 	},
+	-- Close current pane
 	{
 		mods = "LEADER",
 		key = "x",
-		action = action.CloseCurrentPane({ confirm = true }),
+		action = act.CloseCurrentPane({ confirm = true }),
 	},
+	-- Close current tab
 	{
 		mods = "LEADER",
 		key = "X",
-		action = action.CloseCurrentTab({ confirm = true }),
+		action = act.CloseCurrentTab({ confirm = true }),
 	},
+	-- Toggle fullscreen
 	{
 		mods = "LEADER",
 		key = "f",
-		action = action.ToggleFullScreen,
+		action = act.ToggleFullScreen,
 	},
+	-- Show all tabs in workspace
 	{
 		mods = "LEADER",
 		key = "t",
-		action = action.ShowTabNavigator,
+		action = act.ShowTabNavigator,
+	},
+	-- Rename tab
+	{
+		mods = "LEADER",
+		key = "r",
+		action = act.PromptInputLine({
+			description = "Enter new name for tab",
+			action = wezterm.action_callback(function(window, pane, line)
+				if line then
+					window:active_tab():set_title(line)
+				end
+			end),
+		}),
+	},
+	{
+		mods = "LEADER",
+		key = "m",
+		action = act.TogglePaneZoomState,
 	},
 }
