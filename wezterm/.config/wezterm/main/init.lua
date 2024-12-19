@@ -32,10 +32,4 @@ local projects = {
 sessionizer.set_projects(projects)
 sessionizer.configure(config)
 
-table.insert(config.keys, {
-	mods = "CTRL",
-	key = "f",
-	action = sessionizer.switch_workspace(),
-})
-
 return config

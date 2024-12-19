@@ -111,13 +111,13 @@ end
 local configure = function(config)
 	table.insert(config.keys, {
 		key = "f",
-		mods = "LEADER",
+		mods = "CTRL",
 		action = workspace_switcher(),
 	})
 
 	table.insert(config.keys, {
 		key = "s",
-		mods = "LEADER",
+		mods = "CTRL",
 		action = active_workspaces(),
 	})
 end

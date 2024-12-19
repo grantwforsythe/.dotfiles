@@ -48,13 +48,17 @@ return {
 	},
 	{
 		mods = "LEADER",
-		key = "j",
+		key = "l",
 		action = action.ActivatePaneDirection("Right"),
 	},
-	-- FIX: This does not work
 	{
 		mods = "LEADER",
-		key = "&",
+		key = "x",
+		action = action.CloseCurrentPane({ confirm = true }),
+	},
+	{
+		mods = "LEADER",
+		key = "X",
 		action = action.CloseCurrentTab({ confirm = true }),
 	},
 	{
