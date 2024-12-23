@@ -1,7 +1,7 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
-return {
+local keys = {
 	-- Next tab
 	{
 		mods = "LEADER",
@@ -94,3 +94,13 @@ return {
 		action = act.TogglePaneZoomState,
 	},
 }
+
+for i = 1, 9 do
+	table.insert(keys, {
+		mods = "LEADER",
+		key = tostring(i),
+		action = act.ActivateTab(i - 1),
+	})
+end
+
+return keys
