@@ -58,9 +58,10 @@ end
 -- local theme_path = gears.filesystem.get_configuration_dir() .. "themes/"
 -- beautiful.init(theme_path .. "gruvbox/theme.lua")
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+beautiful.useless_gap = 2
 
 -- This is used later as the default terminal and editor to run.
-terminal = "wezterm"
+terminal = "wezterm start --always-new-process"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -358,7 +359,7 @@ globalkeys = gears.table.join(
 
 	-- Prompt
 	awful.key({ modkey }, "r", function()
-		awful.screen.focused().mypromptbox:run()
+		awful.util.spawn("rofi -show drun")
 	end, { description = "run prompt", group = "launcher" }),
 
 	awful.key({ modkey }, "x", function()
@@ -380,7 +381,7 @@ clientkeys = gears.table.join(
 		c.fullscreen = not c.fullscreen
 		c:raise()
 	end, { description = "toggle fullscreen", group = "client" }),
-	awful.key({ modkey, "Shift" }, "c", function(c)
+	awful.key({ modkey }, "q", function(c)
 		c:kill()
 	end, { description = "close", group = "client" }),
 	awful.key(
