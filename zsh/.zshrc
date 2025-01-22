@@ -164,3 +164,14 @@ if [ -d "$FNM_PATH" ]; then
   eval "$(fnm env --use-on-cd --corepack-enabled --version-file-strategy recursive)"
 fi
 eval "$(starship init zsh)"
+
+# pnpm
+export PNPM_HOME="/home/grantwforsythe/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+export PATH="$HOME/.gobrew/current/bin:$HOME/.gobrew/bin:$PATH"
+export GOROOT="$HOME/.gobrew/current/go"
