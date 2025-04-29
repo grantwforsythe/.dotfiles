@@ -1,11 +1,5 @@
 local wezterm = require("wezterm")
 
--- Maximize on startup
-wezterm.on("gui-startup", function(cmd)
-	local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
-	window:gui_window():maximize()
-end)
-
 local config = require("main.global.config")
 
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
