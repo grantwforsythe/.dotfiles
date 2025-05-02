@@ -32,7 +32,7 @@ gaps:
   scale_with_dpi: true
 
   # Gap between adjacent windows.
-  inner_gap: '5px'
+  inner_gap: '10px'
 
   # Gap between windows and the screen edge.
   outer_gap:
@@ -98,38 +98,7 @@ window_behavior:
       shown_on_top: false
 
 workspaces:
-  # This is the unique ID for the workspace. It's used in keybinding
-  # commands, and is also the label shown in 3rd-party apps (e.g. Zebar) if
-  # `display_name` is not provided.
   - name: '1'
-    # Optional override for the workspace label used in 3rd-party apps.
-    # Does not need to be unique.
-    display_name: "Chat"
-
-    # Optionally force the workspace on a specific monitor if it exists.
-    # 0 is your leftmost screen, 1 is the next one to the right, and so on.
-    bind_to_monitor: 0
-
-    # Optionally prevent workspace from being deactivated when empty.
-    keep_alive: true
-    
-  - name: '2'
-    # Optional override for the workspace label used in 3rd-party apps.
-    # Does not need to be unique.
-    display_name: "Web"
-
-    # Optionally force the workspace on a specific monitor if it exists.
-    # 0 is your leftmost screen, 1 is the next one to the right, and so on.
-    bind_to_monitor: 0
-
-    # Optionally prevent workspace from being deactivated when empty.
-    keep_alive: true
-    
-  - name: '3'
-    # Optional override for the workspace label used in 3rd-party apps.
-    # Does not need to be unique.
-    display_name: "Dev"
-
     # Optionally force the workspace on a specific monitor if it exists.
     # 0 is your leftmost screen, 1 is the next one to the right, and so on.
     bind_to_monitor: 1
@@ -137,43 +106,36 @@ workspaces:
     # Optionally prevent workspace from being deactivated when empty.
     keep_alive: true
     
-  - name: '4'
-    # Optional override for the workspace label used in 3rd-party apps.
-    # Does not need to be unique.
-    display_name: "Chat"
-
-    # Optionally force the workspace on a specific monitor if it exists.
-    # 0 is your leftmost screen, 1 is the next one to the right, and so on.
+  - name: '2'
     bind_to_monitor: 0
 
-    # Optionally prevent workspace from being deactivated when empty.
+    keep_alive: true
+    
+  - name: '3'
+    bind_to_monitor: 1
+
+    keep_alive: true
+    
+  - name: '4'
+    # display_name: "Spotify"
+    bind_to_monitor: 1
+
     keep_alive: true
     
   - name: '5'
-    # Optional override for the workspace label used in 3rd-party apps.
-    # Does not need to be unique.
-    display_name: "Chat"
-
-    # Optionally force the workspace on a specific monitor if it exists.
-    # 0 is your leftmost screen, 1 is the next one to the right, and so on.
-    bind_to_monitor: 0
-
-    # Optionally prevent workspace from being deactivated when empty.
-    keep_alive: true    
-    
-
+    bind_to_monitor: 0 
 
 window_rules:
   - commands: ["move --workspace 2"]
     match:
       # Move browsers to workspace 2.
       - window_process: { regex: "msedge|brave|chrome|firefox" }
-      
-  - commands: ["move --workspace 3"]
+
+  - commands: ["move --workspace 4"]
     match:
       # Move browsers to workspace 2.
-      - window_process: { regex: "wezterm" }
-      
+      - window_process: { regex: "Spotify" }
+            
       
   - commands: ['ignore']
     match:
@@ -283,7 +245,7 @@ keybindings:
 
   # Close focused window.
   - commands: ['close']
-    bindings: ['alt+shift+q']
+    bindings: ['alt+q']
 
   # Kill GlazeWM process safely.
   - commands: ['wm-exit']
