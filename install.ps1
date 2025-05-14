@@ -6,12 +6,12 @@ function Create-SymbolicLink {
         [string]$DestinationPath
     )
 
-    if (Test-Path -LiteralPath $TargetPath) {
-        Write-Host "$TargetPath already exists. Removing it..."
-        Remove-Item -LiteralPath $TargetPath -Recurse
+    if (Test-Path -LiteralPath $DestinationPath) {
+        Write-Host "$DestinationPath already exists. Removing it..."
+        Remove-Item -LiteralPath $DestinationPath -Recurse
     }
 
-    New-Item -Path $DestinationPath -ItemType SymbolicLink -Value $TargetPath
+    New-Item -Path $DestinationPath -ItemType SymbolicLink -Value $TargetPath | Out-Null
     Write-Host "Symbolic linked created at $DestinationPath"
 }
 
@@ -20,7 +20,7 @@ function Install-PackageIfMissing {
         [Parameter(Mandatory=$true)]
         [string]$PackageId,
         [Parameter(Mandatory=$false)]
-        [string]$Version,
+        [string]$Version
     )
 
     winget list -q $PackageId | Out-Null
@@ -38,30 +38,33 @@ function Install-PackageIfMissing {
     Write-Host "Installed $PackageId"
 }
 
-Create-SymbolicLink "$PWD.Path\powershell\Microsoft.PowerShell_profile.ps1" "$env:USERPROFILE\Documents\WindowsPowershell\Microsoft.PowerShell_profile.ps1"
-Create-SymbolicLink "$PWD.Path\git\.gitconfig" "$env:USERPROFILE\.gitconfig"
-Create-SymbolicLink "$PWD.Path\glazewm\" "$env:USERPROFILE\.glzr\glazewm"
-Create-SymbolicLink "$PWD.Path\alacritty\.config" "$env:APPDATA\alacritty"
-Create-SymbolicLink "$PWD.Path\lazygit\.config" "$env:LOCALAPPDATA\lazygit"
-Create-SymbolicLink "$PWD.Path\nvim\.config" "$env:LOCALAPPDATA\nvim"
-Create-SymbolicLink "$PWD.Path\wezterm\.config" "$env:USERPROFILE\.config\wezterm"
-Create-SymbolicLink "$PWD.Path\starship\.config" "$env:LOCALAPPDATA\starship"
+$dir = $PWD.Path
+
+Create-SymbolicLink "$dir\powershell\Microsoft.PowerShell_profile.ps1" "$env:USERPROFILE\Documents\WindowsPowershell\Microsoft.PowerShell_profile.ps1"
+Create-SymbolicLink "$dir\git\.gitconfig" "$env:USERPROFILE\.gitconfig"
+Create-SymbolicLink "$dir\glazewm\" "$env:USERPROFILE\.glzr\glazewm"
+Create-SymbolicLink "$dir\alacritty\.config\alacritty" "$env:APPDATA\alacritty"
+Create-SymbolicLink "$dir\lazygit\.config\lazygit" "$env:LOCALAPPDATA\lazygit"
+Create-SymbolicLink "$dir\nvim\.config\nvim" "$env:LOCALAPPDATA\nvim"
+Create-SymbolicLink "$dir\wezterm\.config\wezterm" "$env:USERPROFILE\.config\wezterm"
+Create-SymbolicLink "$dir\starship\.config\" "$env:LOCALAPPDATA\starship"
 
 # Utils
 Install-PackageIfMissing "jqlang.jq"
 Install-PackageIfMissing "junegunn.fzf"
 Install-PackageIfMissing "sharkdp.bat"
 Install-PackageIfMissing "BurntSushi.ripgrep"
+Install-PackageIfMissing "Microsoft.PowerToys"
 
 # Tools
 Install-PackageIfMissing "Starship.Starship"
 Install-PackageIfMissing "glzr-io.glazewm"
 Install-PackageIfMissing "wez.wezterm"
 Install-PackageIfMissing "Neovim.Neovim"
+Write-Host "Installing zig with winget takes a while, please be patient..."
 Install-PackageIfMissing "zig.zig" # Required C compiler for neovim
 
 # Git
 Install-PackageIfMissing "Git.Git"
 Install-PackageIfMissing "JesseDuffield.lazygit"
 Install-PackageIfMissing "dandavison.delta"
-

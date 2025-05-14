@@ -9,6 +9,11 @@ Invoke-Expression (&starship init powershell)
 $ENV:STARSHIP_CONFIG = "$LOCALAPPDATA\starship\starship.toml"
 $ENV:STARSHIP_CACHE = "$APPDATA\Temp"
 
+function which($command) {
+    Get-Command -Name $command -ErrorAction SilentlyContinue | 
+    Select-Object -ExpandProperty Source -ErrorAction SilentlyContinue
+}
+
 # Git autocomplete
 Import-Module posh-git
 
