@@ -53,7 +53,7 @@ Create-SymbolicLink "$dir\starship\.config\" "$env:LOCALAPPDATA\starship"
 Install-PackageIfMissing "jqlang.jq"
 Install-PackageIfMissing "junegunn.fzf"
 Install-PackageIfMissing "sharkdp.bat"
-Install-PackageIfMissing "BurntSushi.ripgrep"
+Install-PackageIfMissing "BurntSushi.ripgrep.MSVC"
 Install-PackageIfMissing "Microsoft.PowerToys"
 
 # Tools
