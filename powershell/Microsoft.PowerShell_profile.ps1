@@ -15,28 +15,28 @@ function which($command) {
 }
 
 # Git autocomplete
-Import-Module posh-git
+if (-not (Get-Module -Name posh-git -ListAvailable)) {
+    Import-Module posh-git
+}
 
-Import-Module PSFzf
+# Fuzzy finder
+if (-not (Get-Module -Name PSFzf -ListAvailable)) {
+    Import-Module PSFzf
+}
 
-# Enable tab autocomplete
 Set-PsFzfOption -EnableAliasFuzzyHistory
 
-# Enable VI mode
-Import-Module PSReadLine
+# Enable VI mode and configure PSReadLine
+if (-not (Get-Module -Name PSReadLine -ListAvailable)) {
+    Import-Module PSReadLine
+}
 
 Set-PSReadLineOption -EditMode Vi -ViModeIndicator Cursor
-
-# Shows navigable menu of all options when hitting Tab
-Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
-
-# Autocompleteion for Arrow keys
 Set-PSReadLineOption -HistorySearchCursorMovesToEnd
+Set-PSReadLineOption -ShowToolTips
+
+# Key bindings
+Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
-
-Set-PSReadLineOption -ShowToolTips
-Set-PSReadLineOption -PredictionSource History
-
 Set-PSReadLineKeyHandler -Key Ctrl+r -ScriptBlock { Invoke-FuzzyHistory }
-
