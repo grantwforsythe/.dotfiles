@@ -7,7 +7,7 @@ function Create-SymbolicLink {
     )
 
     if (Test-Path -LiteralPath $DestinationPath) {
-        Write-Host "$DestinationPath already exists. Removing it..."
+        Write-Warning "$DestinationPath already exists. Removing it..."
         Remove-Item -LiteralPath $DestinationPath -Recurse
     }
 
@@ -38,6 +38,12 @@ function Install-PackageIfMissing {
     Write-Host "Installed $PackageId"
 }
 
+# Check for administrative privileges
+if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)) {
+    Write-Error "You must run this script as an Administrator!"
+    exit 1
+}
+
 $dir = $PWD.Path
 
 Create-SymbolicLink "$dir\powershell\Microsoft.PowerShell_profile.ps1" "$env:USERPROFILE\Documents\WindowsPowershell\Microsoft.PowerShell_profile.ps1"
@@ -48,6 +54,8 @@ Create-SymbolicLink "$dir\lazygit\.config\lazygit" "$env:LOCALAPPDATA\lazygit"
 Create-SymbolicLink "$dir\nvim\.config\nvim" "$env:LOCALAPPDATA\nvim"
 Create-SymbolicLink "$dir\wezterm\.config\wezterm" "$env:USERPROFILE\.config\wezterm"
 Create-SymbolicLink "$dir\starship\.config\" "$env:LOCALAPPDATA\starship"
+
+Remove-Variable dir
 
 # Utils
 Install-PackageIfMissing "jqlang.jq"
