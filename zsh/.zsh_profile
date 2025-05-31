@@ -20,6 +20,7 @@ alias tree='tree -CAhF --dirsfirst'
 alias treed='tree -CAFd'
 alias lg='lazygit'
 alias bat='batcat --theme=gruvbox-dark'
+alias cat='batcat --theme=gruvbox-dark'
 alias g='git'
 alias d='docker'
 
