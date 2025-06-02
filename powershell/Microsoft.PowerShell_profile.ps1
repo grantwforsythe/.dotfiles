@@ -5,9 +5,9 @@ Set-Alias lg lazygit
 Set-Alias .. cd..
 
 # Set Starship as prompt
-Invoke-Expression (&starship init powershell)
-$ENV:STARSHIP_CONFIG = "$LOCALAPPDATA\starship\starship.toml"
-$ENV:STARSHIP_CACHE = "$APPDATA\Temp"
+# Invoke-Expression (&starship init powershell)
+# $ENV:STARSHIP_CONFIG = "$LOCALAPPDATA\starship\starship.toml"
+# $ENV:STARSHIP_CACHE = "$APPDATA\Temp"
 
 function which($command) {
     Get-Command -Name $command -ErrorAction SilentlyContinue | 
@@ -23,6 +23,8 @@ if (-not (Get-Module -Name posh-git -ListAvailable)) {
 if (-not (Get-Module -Name PSFzf -ListAvailable)) {
     Import-Module PSFzf
 }
+
+Invoke-Expression (& { (zoxide init --cmd cd powershell | Out-String) })
 
 Set-PsFzfOption -EnableAliasFuzzyHistory
 
