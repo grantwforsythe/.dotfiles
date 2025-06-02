@@ -84,7 +84,7 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(colored-man-pages dotenv zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(colored-man-pages dotenv zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -151,11 +151,9 @@ bindkey '^e' edit-command-line
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # User configuration
-source ~/.zsh_profile
-
-if [ -f ~/.profile ]; then
-    source ~/.profile
-fi
+[ -f ~/.zsh_profile ] && source ~/.zsh_profile
+[ -f ~/.profile ] && source ~/.profile
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # fnm
 FNM_PATH="$HOME/.local/share/fnm"

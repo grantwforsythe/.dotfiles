@@ -1,6 +1,3 @@
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
-
 # Shortcuts
 alias cp='cp -i'
 alias mv='mv -i'
