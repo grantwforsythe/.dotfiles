@@ -14,26 +14,18 @@ function which($command) {
     Select-Object -ExpandProperty Source -ErrorAction SilentlyContinue
 }
 
-# Git autocomplete
-if (-not (Get-Module -Name posh-git -ListAvailable)) {
-    Import-Module posh-git
-}
-
-# Fuzzy finder
-if (-not (Get-Module -Name PSFzf -ListAvailable)) {
-    Import-Module PSFzf
-}
+Import-Module posh-git
 
 Invoke-Expression (& { (zoxide init --cmd cd powershell | Out-String) })
 
+Import-Module PSFzf
 Set-PsFzfOption -EnableAliasFuzzyHistory
+Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+r'
 
-# Enable VI mode and configure PSReadLine
-if (-not (Get-Module -Name PSReadLine -ListAvailable)) {
-    Import-Module PSReadLine
-}
+Import-Module PSReadLine
 
 Set-PSReadLineOption -EditMode Vi -ViModeIndicator Cursor
+Set-PSReadLineOption -PredictionViewStyle ListView 
 Set-PSReadLineOption -HistorySearchCursorMovesToEnd
 Set-PSReadLineOption -ShowToolTips
 

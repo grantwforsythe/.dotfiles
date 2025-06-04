@@ -76,3 +76,8 @@ Install-PackageIfMissing "zig.zig" # Required C compiler for neovim
 Install-PackageIfMissing "Git.Git"
 Install-PackageIfMissing "JesseDuffield.lazygit"
 Install-PackageIfMissing "dandavison.delta"
+
+Install-Module posh-git
+Install-Module PSFzf
+Install-Module PSReadLine
+
