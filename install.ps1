@@ -45,17 +45,10 @@ if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 }
 
 $dir = $PWD.Path
+# NOTE: This is a workaround for when the $PROFILE is in OneDrive, which is the default for Windows 10/11.
+$profilePath = Split-Path -Path $PROFILE -Parent
 
-$profilePath = if ((Get-CimInstance Win32_OperatingSystem).Caption -like "*Windows 11*") {
-    "$env:USERPROFILE\OneDrive\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
-} else {
-    "$env:USERPROFILE\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
-}
-
-Create-SymbolicLink `
-    "$dir\powershell\Microsoft.PowerShell_profile.ps1" `
-    $profilePath
-
+Create-SymbolicLink "$dir\powershell\" $profilePath
 Create-SymbolicLink "$dir\git\.gitconfig" "$env:USERPROFILE\.gitconfig"
 Create-SymbolicLink "$dir\glazewm\" "$env:USERPROFILE\.glzr\glazewm"
 Create-SymbolicLink "$dir\alacritty\.config\alacritty" "$env:APPDATA\alacritty"
@@ -87,7 +80,5 @@ Install-PackageIfMissing "Git.Git"
 Install-PackageIfMissing "JesseDuffield.lazygit"
 Install-PackageIfMissing "dandavison.delta"
 
-Install-Module posh-git
 Install-Module PSFzf
 Install-Module PSReadLine
-
