@@ -2,16 +2,21 @@ Set-Alias vim nvim
 Set-Alias vi nvim
 Set-Alias g git
 Set-Alias lg lazygit
+Set-Alias d docker
 Set-Alias .. cd..
+Set-Alias grep rg
 
-Invoke-Expression (&starship init powershell)
-$ENV:STARSHIP_CONFIG = "$LOCALAPPDATA\starship\starship.toml"
-$ENV:STARSHIP_CACHE = "$APPDATA\Temp"
+function mkdir { New-Item -ItemType Directory -Force -Path $args }
 
 function which($command) {
     Get-Command -Name $command -ErrorAction SilentlyContinue | 
     Select-Object -ExpandProperty Source -ErrorAction SilentlyContinue
 }
+
+Invoke-Expression (&starship init powershell)
+$ENV:STARSHIP_CONFIG = "$LOCALAPPDATA\starship\starship.toml"
+$ENV:STARSHIP_CACHE = "$APPDATA\Temp"
+
 
 Import-Module posh-git
 
