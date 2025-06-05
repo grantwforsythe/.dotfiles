@@ -15,21 +15,24 @@ function which($command) {
 
 Import-Module posh-git
 
-Invoke-Expression (& { (zoxide init --cmd cd powershell | Out-String) })
-
-Import-Module PSFzf
-Set-PsFzfOption -EnableAliasFuzzyHistory
-Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+r'
+Invoke-Expression (& { (zoxide init powershell | Out-String) })
+Set-Alias -Name cd -Value __zoxide_z -Option AllScope -Scope Global -Force
+Set-Alias -Name cdi -Value __zoxide_zi -Option AllScope -Scope Global -Force
 
 Import-Module PSReadLine
 
 Set-PSReadLineOption -EditMode Vi -ViModeIndicator Cursor
-Set-PSReadLineOption -PredictionViewStyle ListView 
-Set-PSReadLineOption -HistorySearchCursorMovesToEnd
+# Set-PSReadLineOption -PredictionViewStyle ListView 
+# Set-PSReadLineOption -HistorySearchCursorMovesToEnd
 Set-PSReadLineOption -ShowToolTips
 
 # Key bindings
 Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
-Set-PSReadLineKeyHandler -Key Ctrl+r -ScriptBlock { Invoke-FuzzyHistory }
+
+Import-Module PSFzf
+Set-PsFzfOption -EnableAliasFuzzyHistory
+Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
+Set-PsFzfOption -TabExpansion
+

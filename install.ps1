@@ -46,7 +46,16 @@ if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 
 $dir = $PWD.Path
 
-Create-SymbolicLink "$dir\powershell\Microsoft.PowerShell_profile.ps1" "$env:USERPROFILE\Documents\WindowsPowershell\Microsoft.PowerShell_profile.ps1"
+$profilePath = if ((Get-CimInstance Win32_OperatingSystem).Caption -like "*Windows 11*") {
+    "$env:USERPROFILE\OneDrive\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
+} else {
+    "$env:USERPROFILE\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
+}
+
+Create-SymbolicLink `
+    "$dir\powershell\Microsoft.PowerShell_profile.ps1" `
+    $profilePath
+
 Create-SymbolicLink "$dir\git\.gitconfig" "$env:USERPROFILE\.gitconfig"
 Create-SymbolicLink "$dir\glazewm\" "$env:USERPROFILE\.glzr\glazewm"
 Create-SymbolicLink "$dir\alacritty\.config\alacritty" "$env:APPDATA\alacritty"
@@ -56,6 +65,7 @@ Create-SymbolicLink "$dir\wezterm\.config\wezterm" "$env:USERPROFILE\.config\wez
 Create-SymbolicLink "$dir\starship\.config\" "$env:LOCALAPPDATA\starship"
 
 Remove-Variable dir
+Remove-Variable profilePath
 
 # Utils
 Install-PackageIfMissing "jqlang.jq"
