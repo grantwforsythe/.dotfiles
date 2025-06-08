@@ -1,34 +1,41 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
---- SessionizerPlugin provides workspace and session management utilities for WezTerm.
---- @class SessionizerPlugin
---- @field workspace_switcher fun(): function
----        Presents an input selector to switch between directories as workspaces.
---- @field active_workspaces fun(): table
----        Shows a launcher listing all active workspaces.
---- @field apply_to_config fun(config: table): nil
----        Applies keybindings for workspace switching and listing to the given config.
+---@type { paths: string[] }
+--TODO: Automatically resolve the path
+-- TODO: Add option to set additional args
+local sessionizer_config = { paths = { "." } }
+-- local defaults = { paths = { wezterm.home_dir } }
 
----@type SessionizerPlugin
-local M = {}
-local defaults = {}
+local is_windows = string.find(wezterm.target_triple, "windows") ~= nil
 
 ---Retrieve the directories found within the base_path table
 ---@return { id: string, label: string }[]
 local get_directories = function()
 	local folders = {}
+
+	-- TODO: rewrite
+	local process_args = { os.getenv("SHELL"), "-c", cmd }
+	if is_windows then
+		process_args = { "cmd", "/c", cmd }
+	end
+	-- TODO: Add check if on windows
+	-- TODO: Handle zoxide
 	local success, stdout, stderr = wezterm.run_child_process({
+		"cmd",
+		"/c",
 		"fd",
-		"--hidden",
-		"--type d",
-		"--max-depth 1",
-		"--exclude .github",
-		"repos"
+		".",
+		"-a",
+		"--type",
+		"d",
+		"--max-depth",
+		"1",
+		table.concat(sessionizerConfig.paths, " "),
 	})
 
 	if not success then
-		error(stderr)
+		wezterm.log_error(stderr)
 	end
 
 	for _, path in ipairs(wezterm.split_by_newlines(stdout)) do
@@ -39,7 +46,9 @@ local get_directories = function()
 	return folders
 end
 
-M.workspace_switcher = function()
+--- @field workspace_switcher fun(): function
+---        Presents an input selector to switch between directories as workspaces.
+local workspace_switcher = function()
 	return wezterm.action_callback(function(window, pane)
 		local workspaces = get_directories()
 
@@ -50,6 +59,7 @@ M.workspace_switcher = function()
 						-- INFO: Do nothing
 					else
 						local full_path = string.gsub(label, "^~", wezterm.home_dir)
+						wezterm.log_info("Switching to workspace: " .. full_path)
 
 						if full_path:sub(1, 1) == "/" or full_path:sub(3, 3) == "\\" then
 							inner_window:perform_action(
@@ -81,21 +91,35 @@ M.workspace_switcher = function()
 	end)
 end
 
-M.active_workspaces = function()
+--- @field active_workspaces fun(): table
+---        Shows a launcher listing all active workspaces.
+local active_workspaces = function()
 	return act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" })
 end
 
-M.apply_to_config = function(config)
+--- SessionizerPlugin provides workspace and session management utilities for WezTerm.
+--- @class SessionizerPlugin
+--- @field apply_to_config fun(config: table): nil
+---        Applies keybindings for workspace switching and listing to the given config.
+
+---@type SessionizerPlugin
+local M = {}
+
+M.apply_to_config = function(config, opts)
+	if config == nil or config.keys == nil then
+		return
+	end
+
 	table.insert(config.keys, {
 		key = "f",
 		mods = "CTRL",
-		action = M.workspace_switcher(),
+		action = workspace_switcher(),
 	})
 
 	table.insert(config.keys, {
 		key = "s",
 		mods = "CTRL",
-		action = M.active_workspaces(),
+		action = active_workspaces(),
 	})
 end
 

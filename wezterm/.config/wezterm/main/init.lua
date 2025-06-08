@@ -17,13 +17,8 @@ config.keys = require("main.global.remap")
 -----------------------------------------------
 --                   Plugins                 --
 -----------------------------------------------
-local sessionizer = require("main.plugins.sessionizer")
-local projects = {
-	"~",
-	"~/repos",
-}
-
-sessionizer.set_projects(projects)
-sessionizer.configure(config)
+-- local sessionizer = require("main.plugins.sessionizer")
+local sessionizer = require("main.plugin")
+sessionizer.apply_to_config(config)
 
 return config
