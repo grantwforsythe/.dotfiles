@@ -18,7 +18,7 @@ config.keys = require("main.global.remap")
 --                   Plugins                 --
 -----------------------------------------------
 -- local sessionizer = require("main.plugins.sessionizer")
-local sessionizer = require("main.plugin")
-sessionizer.apply_to_config(config)
+local sessionizer = require("main.plugins.sessionizer")
+sessionizer.apply_to_config(config, { paths = { "~\\repos" } })
 
 return config
