@@ -14,11 +14,7 @@ end
 
 config.keys = require("main.global.remap")
 
------------------------------------------------
---                   Plugins                 --
------------------------------------------------
--- local sessionizer = require("main.plugins.sessionizer")
-local sessionizer = require("main.plugins.sessionizer")
+local sessionizer = wezterm.plugin.require("https://github.com/grantwforsythe/sessionizer.wezterm")
 sessionizer.apply_to_config(config, { paths = { "~\\repos" } })
 
 return config
