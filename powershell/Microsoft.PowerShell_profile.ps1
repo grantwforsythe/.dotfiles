@@ -23,3 +23,7 @@ Import-Module PSFzf
 Set-PsFzfOption -EnableAliasFuzzyHistory
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
 Set-PsFzfOption -TabExpansion
+
+$ENV:FZF_DEFAULT_OPTS = "--height 40%"
+$ENV:FZF_CTRL_T_COMMAND = $ENV:FZF_DEFAULT_OPTS
+
