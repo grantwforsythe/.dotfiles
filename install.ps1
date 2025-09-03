@@ -44,6 +44,12 @@ if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
     exit 1
 }
 
+$binPath = Join-Path $env:USERPROFILE ".bin"
+if (!(Test-Path $binPath)) {
+    New-Item -ItemType Directory -Path $binPath -Force
+    Write-Host "Created $binPath directory"
+}
+
 $dir = $PWD.Path
 # NOTE: This is a workaround for when the $PROFILE is in OneDrive, which is the default for Windows 10/11.
 $profilePath = Split-Path -Path $PROFILE -Parent

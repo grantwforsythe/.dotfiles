@@ -1,6 +1,8 @@
 . "$PSScriptRoot\Scripts\Aliases.ps1"
 . "$PSScriptRoot\Scripts\Functions.ps1"
 
+$env:Path += ";$env:USERPROFILE\.bin"
+
 Invoke-Expression (&starship init powershell)
 $ENV:STARSHIP_CONFIG = "$LOCALAPPDATA\starship\starship.toml"
 $ENV:STARSHIP_CACHE = "$APPDATA\Temp"
