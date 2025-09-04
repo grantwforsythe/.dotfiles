@@ -89,7 +89,7 @@ plugins=(colored-man-pages dotenv zsh-autosuggestions zsh-syntax-highlighting zs
 source $ZSH/oh-my-zsh.sh
 
 # Append local binaries to $PATH
-export PATH="$PATH:$HOME/.local/bin:/opt/nvim-linux64/bin"
+export PATH="$PATH:$HOME/.local/bin:/opt/nvim-linux64/bin:$HOME/go/bin"
 
 # vi mode
 bindkey -v
@@ -153,11 +153,6 @@ bindkey '^e' edit-command-line
 # User configuration
 [ -f ~/.zsh_profile ] && source ~/.zsh_profile
 [ -f ~/.profile ] && source ~/.profile
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-export FZF_DEFAULT_OPTS='--height 40%'
-export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # fnm
 FNM_PATH="$HOME/.local/share/fnm"
@@ -181,3 +176,12 @@ export GOROOT="$HOME/.gobrew/current/go"
 
 # zoxide configuration
 eval "$(zoxide init --cmd cd zsh)"
+
+# FZF
+# See https://github.com/jeffreytse/zsh-vi-mode?tab=readme-ov-file#execute-extra-commands
+zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
+
+export FZF_DEFAULT_OPTS='--height 40%'
+export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
