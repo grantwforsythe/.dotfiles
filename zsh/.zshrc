@@ -151,33 +151,36 @@ bindkey '^e' edit-command-line
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # User configuration
-[ -f ~/.zsh_profile ] && source ~/.zsh_profile
 [ -f ~/.profile ] && source ~/.profile
 
-# fnm
-FNM_PATH="$HOME/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$HOME/.local/share/fnm:$PATH"
-  eval "$(fnm env --use-on-cd --corepack-enabled --version-file-strategy recursive)"
-fi
+# ---- History ----
+# Expand the history size
+HISTFILESIZE=10000
+HISTSIZE=500
+HISTFILE="$HOME/.zsh_history"
+
+# Don't put duplicate lines in the history and do not add lines that start with a space
+export HISTCONTROL=erasedups:ignoredups:ignorespace
+
+setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
+setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
+setopt SHARE_HISTORY             # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
+setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate.
+setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
+setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
+setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
+setopt APPEND_HISTORY            # append to history file
+setopt HIST_NO_STORE             # Don't store history commands
+
+# ---- Tool Configuration ----
 eval "$(starship init zsh)"
-
-# pnpm
-export PNPM_HOME="/home/grantwforsythe/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-export PATH="$HOME/.gobrew/current/bin:$HOME/.gobrew/bin:$PATH"
-export GOROOT="$HOME/.gobrew/current/go"
-# shellcheck shell=bash
-
-# zoxide configuration
 eval "$(zoxide init --cmd cd zsh)"
+eval "$(fnm env --use-on-cd --corepack-enabled --version-file-strategy recursive --shell zsh)"
 
-# FZF
+# BUG: https://github.com/junegunn/fzf/issues/4569
 # See https://github.com/jeffreytse/zsh-vi-mode?tab=readme-ov-file#execute-extra-commands
 zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
 
@@ -185,3 +188,5 @@ export FZF_DEFAULT_OPTS='--height 40%'
 export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
